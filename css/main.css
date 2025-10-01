@@ -304,6 +304,8 @@ input, select, textarea {
 		}
 
 		.row.aln-center {
+			display: flex;
+  			flex-wrap: wrap;
 			justify-content: center;
 		}
 
@@ -547,7 +549,11 @@ input, select, textarea {
 				}
 
 				.row.aln-center {
-					justify-content: center;
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					height: 100%;
 				}
 
 				.row.aln-right {
@@ -792,6 +798,9 @@ input, select, textarea {
 				}
 
 				.row.aln-center {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
 					justify-content: center;
 				}
 
@@ -1629,7 +1638,7 @@ input, select, textarea {
 
 		.image img {
 			display: block;
-			width: 100%;
+			width: 80%;
 		}
 
 		.image.fit {
