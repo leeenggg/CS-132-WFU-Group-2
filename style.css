@@ -1,0 +1,898 @@
+/* ----------------------------------------------------------
+   🌐 FONT IMPORTS
+---------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,700");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* ----------------------------------------------------------
+   🧩 GLOBAL RESET & BASE STYLES
+---------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #fff;
+  color: #0b1220;
+}
+
+/* ----------------------------------------------------------
+   🧭 NAVIGATION BAR
+---------------------------------------------------------- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: rgba(3, 169, 244, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------
+   🏠 HERO SECTION
+---------------------------------------------------------- */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  padding-top: 64px; /* Prevent nav overlap */
+  transition: background 0.6s ease;
+}
+
+/* soft fade at hero bottom to blend into the next section */
+.hero::after {
+  /* content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 160px;
+  background: linear-gradient(180deg, rgba(3,169,244,0.0) 0%, rgba(255,255,255,1) 90%);
+  pointer-events: none;
+  transition: opacity 360ms ease, transform 360ms ease; */
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px; /* overlap by 1px to hide the seam */
+  height: 180px; /* slightly taller for smoother blend */
+  background: linear-gradient(
+    180deg,
+    rgba(3,169,244,0) 0%,
+    rgba(255,255,255,0.98) 95%,
+    rgba(255,255,255,1) 100%
+  );
+  pointer-events: none;
+  transition: opacity 360ms ease, transform 360ms ease;
+}
+
+/* when we're near the overview, fade the hero bottom so video shows through */
+body.near-overview .hero::after {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Hero section with dynamic background */
+.hero {
+  background: transparent;
+  transition: background 0.6s ease;
+}
+
+/* Background fills visible area when scrolled to subtitles */
+.hero.scrolled {
+  background: linear-gradient(180deg, #03a9f4 0%, #0288d1 100%);
+}
+
+/* Title color changes on scroll */
+.hero.scrolled .title h1:nth-child(1) {
+  /* outline layer stays blue when scrolled */
+  -webkit-text-stroke: 2px white;
+}
+
+.hero.scrolled .title h1:nth-child(2) {
+  /* filled layer (wave) becomes darker blue */
+  color: #0288d1;
+}
+
+.hero.scrolled .title h3 {
+  /* keep the h3 visible when scrolled */
+  opacity: 1;
+  color: white;
+  transform: none;
+}
+
+/* Typing intro text */
+.intro {
+  position: absolute;
+  top: 35%;
+  font-size: 1.2rem;
+  color: black;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hero.scrolled .intro {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.hero.typing-done .title {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+
+/* ----------------------------------------------------------
+   🔤 TITLE + WAVE TEXT EFFECT
+---------------------------------------------------------- */
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  opacity: 0; /* Hidden until typing finishes */
+  transform: translateY(20px);
+  transition: all 0.36s ease;
+}
+
+.hero.typing-done .title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title h1 {
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  letter-spacing: -1px;
+}
+
+/* Outline layer (blue stroke) */
+.title h1:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #03a9f4;
+}
+
+/* Filled layer (wave animation) */
+.title h1:nth-child(2) {
+  color: #0288d1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* Title subtitle (h3) */
+.title h3 {
+  font-size: clamp(1.6rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: #03a9f4;
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: none;
+  max-width: 900px;
+}
+
+/* Subtitle (revealed after typing) */
+.subtitle {
+  font-size: clamp(1.2rem, 2.4vw, 1.3rem);
+  line-height: 1.5;
+  max-width: 900px;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.36s ease;
+}
+
+.hero.typing-done .subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------------------------
+   🌊 WAVE ANIMATION (applied to the second title h1)
+---------------------------------------------------------- */
+@keyframes wave {
+  0%, 100% {
+    clip-path: polygon(0 44%, 13% 43%, 25% 48%, 37% 56%, 48% 65%, 60% 65%, 73% 58%, 86% 48%, 100% 45%, 100% 120%, 0 120%);
+  }
+  50% {
+    clip-path: polygon(0 57%, 11% 67%, 25% 67%, 38% 60%, 50% 48%, 62% 43%, 75% 45%, 87% 53%, 100% 57%, 100% 120%, 0 120%);
+  }
+}
+
+/* ----------------------------------------------------------
+   📖 CONTENT SECTIONS
+---------------------------------------------------------- */
+section:not(.hero) {
+  min-height: 100vh;
+  padding: 84px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  width: 100%;
+}
+
+.content {
+  color: #0b1220;
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  transition: background 500ms ease;
+  width: 100%;
+}
+
+.overview-content.expanded ~ .content {
+  background: transparent;
+}
+
+#overview.expanded {
+  height: 170vh; /* or whatever value works best */
+  padding-top: 300px; /* reduce top spacing when expanded */
+  transition: all 0.8s ease !important;
+}
+
+
+/* default small overlap to visually connect hero and overview (animated) */
+.content {
+  margin-top: 0;
+  transition: margin-top 360ms ease;
+
+}
+
+/* when near the overview, pull the content up to overlap the hero for a seamless transition */
+body.near-overview .content {
+  margin-top: -120px;
+}
+
+/* Video background container */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw; /* cover full viewport width */
+  height: 100%;
+  z-index: 0; /* keep video behind content */
+}
+
+.video-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overview-content.expanded ~ .video-container::after {
+  opacity: 0; /* remove white overlay when expanded */
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08; /* subtle by default */
+  transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.overview-content.expanded ~ .video-container video {
+  opacity: 0.85; /* fade up when panels expanded */
+}
+
+/* Content window/hole for text */
+.overview-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column; /* stack main panel, button, then expanded panels */
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 3rem 4rem 6rem;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Glass panel effect for text */
+.glass-panel {
+  background: #ffffff; /* fully opaque panels */
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 15rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: all 360ms ease;
+  opacity: 1;
+  visibility: visible;
+  position: relative; /* ensure panel stacks above video */
+  z-index: 3;
+}
+
+.glass-panel h2 {
+  font-size: 2.5rem;
+  color: #03a9f4;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.glass-panel p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+/* See more button */
+.see-more {
+  display: inline-block;
+  margin: 1.25rem auto 0;
+  padding: 0.6rem 1rem;
+  background: #03a9f4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(3,169,244,0.18);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  position: relative; /* ensure button stacks above video */
+  z-index: 4;
+}
+.see-more:active { transform: translateY(1px); }
+.see-more:focus-visible { outline: 3px solid rgba(3,169,244,0.2); }
+
+/* Expanded panels */
+.expanded-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center; /* center panels and match main width */
+  width: 100%;
+  max-width: 1000px; /* room for rows */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  /* transition: opacity 360ms ease, transform 360ms ease; */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 1rem;
+}
+
+.overview-content.expanded .expanded-panels {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Move the main overview panel upward when expanded */
+.overview-content.expanded .glass-panel.main-overview {
+  transform: translateY(-20px); /* Reduced from -40px to keep it more visible */
+}
+
+.panel {
+  background: #ffffff; /* fully opaque */
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  transition: opacity 300ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
+  
+}
+
+
+.overview-content.expanded .panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.expanded-row.top .panel:nth-child(1) { transition-delay: 0.06s; }
+.expanded-row.top .panel:nth-child(2) { transition-delay: 0.12s; }
+.expanded-row.top .panel:nth-child(3) { transition-delay: 0.18s; }
+.expanded-row.bottom .panel:nth-child(1) { transition-delay: 0.24s; }
+.expanded-row.bottom .panel:nth-child(2) { transition-delay: 0.30s; }
+.expanded-row.top { display:flex; gap:1rem; width:100%; }
+.expanded-row.top .panel { flex:1; min-width:220px; }
+.expanded-row.bottom { display:flex; gap:1rem; width:100%; }
+.expanded-row.bottom .panel { flex:1; min-width:280px; }
+.panel h3 { margin: 0 0 1rem 0; color: #0288d1; font-size: 1.5rem; }
+.panel h4 { margin: 0 0 1rem 0; color: black; font-size: 1rem; }
+.panel p { margin: 0; font-size: 1.1rem; line-height: 1.5; color: #0b1220; text-align: left; }
+
+
+
+body.near-data #overview::after {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#overview {
+  /* position: relative;
+  background: white;
+  overflow: hidden;
+  transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1); */
+
+  position: relative;
+  background: #ffffff;
+  padding-top: 500px; 
+  transition: all 0.8s ease !important;
+  overflow: hidden;
+  margin-bottom: -10px;
+  z-index: 1;
+}
+
+#overview::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 300px;
+  /* background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    #03a9f4 80%,
+    #03a9f4 100%
+  ); */
+  pointer-events: none;
+  /* transition: opacity 360ms ease, transform 360ms ease; */
+  z-index: 4;
+}
+
+/* When closed — roughly matches main panel height */
+#overview:not(.expanded) {
+  height: auto;
+  height: 80vh; /* Adjust until it visually matches your main glass panel */
+}
+
+/* When expanded — enough to fit extra panels */
+#overview.expanded {
+  height: 149vh; /* Adjust based on how tall the expanded content looks */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#data {
+  position: relative;
+  z-index: 0;
+  margin-top: -6px; /* 👈 ensures overlap hides any 1px seam */
+}
+
+
+/* Research row layout */
+/* research row removed — research panels use generic .panel styles */
+
+/* Make research-section panels visible by default (they are not the expanded overview panels) */
+/* research-section styles removed — research panels are now part of #expanded-panels */
+
+/* ============================= */
+/* DATA COLLECTION SECTION */
+/* ============================= */
+
+/* --- DATA COLLECTION SECTION --- */
+/* --- DATA COLLECTION SECTION --- */
+#data-collection {
+  background: linear-gradient(to top, #ffffff 0%, #03a9f4 100%);
+  padding: 80px 0;
+  color: #fff;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background 1s ease-in-out;
+}
+
+.data-collection-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* Title at the center */
+.data-title {
+  text-align: center;
+}
+
+.data-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.data-title p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Gallery section */
+.dataset-gallery {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.dataset-track {
+  display: flex;
+  scroll-behavior: smooth;
+  transition: transform 0.3s ease;
+  gap: 20px;
+}
+
+.dataset {
+  flex: 0 0 300px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dataset:hover {
+  transform: scale(1.05);
+}
+
+.dataset img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dataset h3 {
+  font-size: 1rem;
+  margin: 10px;
+}
+
+/* Arrows */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.scroll-btn.left {
+  left: 5px;
+}
+
+.scroll-btn.right {
+  right: 5px;
+}
+
+
+
+
+
+/* === EDA BROWSER SECTION === */
+.eda-browser-section {
+  padding: 0;
+  background-color: #e5e7eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.eda-browser-title {
+  font-size: 2.5rem;
+  color: #03a9f4;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Browser Container */
+.eda-browser {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Tabs at the top */
+.eda-browser-tabs {
+  display: flex;
+  background-color: #d1d5db;
+  border-bottom: 1px solid #9ca3af;
+  padding: 5px;
+}
+
+.eda-browser-tab {
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 20px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.eda-browser-tab:hover {
+  background-color: #f9fafb;
+}
+
+.eda-browser-tab.active {
+  background-color: #ffffff;
+  border-bottom: 4px solid #03a9f4;
+  font-weight: bold;
+  color: #03a9f4;
+}
+
+/* Tab Content Window */
+.eda-browser-window {
+  background-color: #fff;
+  flex-grow: 1;
+  position: relative;
+  padding: 20px;
+}
+
+.eda-browser-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.eda-browser-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Graph Placeholder */
+.eda-graph {
+  width: 100%;
+  height: 70vh;
+  background-color: #e5e7eb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 20px 1px 30px 1px;
+}
+
+.eda-graph img {
+  max-width: 100%;
+  max-height: auto;
+  border-radius: 12px;
+}
+
+/* Description */
+.eda-description {
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  line-height: 1.6;
+  color: #111827;
+}
+
+.eda-description h3 {
+  align-items: center;
+}
+
+/* --- ABOUT US SECTION --- */
+/* #about-us {
+  background: linear-gradient(to bottom, #03a9f4, #ffffff);
+  color: #000;
+  padding: 80px 0;
+  text-align: center;
+} */
+
+#about-us {
+  background: linear-gradient(to bottom, #03a9f4, #ffffff);
+  color: #000;
+  padding: 80px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.about-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#about-us h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 50px;
+  color: white;
+}
+
+/* .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: stretch;
+} */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Exactly 2 per row */
+  gap: 40px;
+  justify-content: center; /* Center the grid horizontally */
+  align-items: stretch;
+  width: 80%; /* Optional: controls how wide the grid is */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.team-member {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #03a9f4;
+}
+
+.team-member h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: #03a9f4;
+}
+
+.team-member .role {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.team-member .contact {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.team-member .description {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+
+
+
+
+/* ---------------------------------------------
+   📱 RESPONSIVE
+--------------------------------------------- */
+@media (max-width: 768px) {
+  .dataset-card img {
+    height: 220px;
+  }
+  .nav-btn {
+    font-size: 1.6rem;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   💡 CURSOR + TYPING EFFECTS
+---------------------------------------------------------- */
+.typed {
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.8ch;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ----------------------------------------------------------
+   📱 RESPONSIVE TWEAKS
+---------------------------------------------------------- */
+@media (max-width: 600px) {
+  .intro {
+    font-size: 1rem;
+  }
+  .title h1 {
+    font-size: 4.5rem;
+  }
+}
