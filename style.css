@@ -138,7 +138,7 @@ body.near-overview .hero::after {
 /* Typing intro text */
 .intro {
   position: absolute;
-  top: 35%;
+  top: 25%;
   font-size: 1.2rem;
   color: black;
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -896,3 +896,4 @@ html {
     font-size: 4.5rem;
   }
 }
+
