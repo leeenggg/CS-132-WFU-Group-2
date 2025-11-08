@@ -61,9 +61,7 @@
 
     <!-- OVERVIEW SECTION -->
     <section id="overview" class="content">
-      <!-- Content Window/Hole for Text -->
       <div class="overview-content">
-        <!-- Main overview glass panel (visible by default) -->
         <div class="glass-panel main-overview">
           <h2>Overview</h2>
           <p>
@@ -76,7 +74,6 @@
           </p>
         </div>
 
-        <!-- See more button (reveals the three panels) -->
         <button
           class="see-more"
           aria-expanded="false"
@@ -85,7 +82,6 @@
           See more
         </button>
 
-        <!-- Hidden expanded panels that will pop down from the overview panel -->
         <div id="expanded-panels" class="expanded-panels" aria-hidden="true">
           <div class="expanded-row top">
             <div class="panel">
@@ -130,16 +126,8 @@
                 urban communities?
               </p>
               <br />
-              <!-- <p>
-                3. What political, economic, and environmental factors limit
-                access to clean water?
-              </p> -->
 
               <h3>Hypothesis</h3>
-              <!-- <h4>Main</h4>
-              <p>
-                Urban development, geographic location, and political-economic factors significantly influence household access to quality water in the Philippines.
-              </p> -->
               <h4>Null</h4>
               <p>
                 Urban development has no significant effect on household access to quality water.
@@ -153,49 +141,17 @@
               <h4>Null</h4>
               <p>
                  Political and economic conditions do not significantly affect household access to quality water.
-
               </p>
               <br />
               <h4>Alternative</h4>
               <p>
                 Political and economic conditions significantly affect household access to quality water.
-
               </p>
             </div>
-
-            <!-- <div class="panel">
-              <h3>Hypothesis</h3>
-              <h4>Main</h4>
-              <p>
-                Urban development, geographic location, and political-economic factors significantly influence household access to quality water in the Philippines.
-              </p>
-              <br />
-              <h4>Null</h4>
-              <p>
-                Urban development has no significant effect on household access to quality water.
-              </p>
-              <br />
-              <h4>Alternative</h4>
-              <p>
-                Urban development significantly affects household access to quality water.
-              </p>
-              <h4>Null</h4>
-              <p>
-                 Political and economic conditions do not significantly affect household access to quality water.
-
-              </p>
-              <br />
-              <h4>Alternative</h4>
-              <p>
-                Political and economic conditions significantly affect household access to quality water.
-
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
 
-      <!-- Video Background Container -->
       <div class="video-container">
         <video src="img/urban1.mp4" autoplay muted loop playsinline></video>
       </div>
@@ -250,8 +206,6 @@
             </a>
           </div>
 
-
-
           <button class="scroll-btn right">&#10095;</button>
         </div>
       </div>
@@ -262,7 +216,6 @@
       <h1 class="eda-browser-title">Exploratory Data Analysis</h1>
 
       <div class="eda-browser">
-        <!-- Browser Tabs -->
         <div class="eda-browser-tabs">
           <button
             class="eda-browser-tab active"
@@ -276,27 +229,14 @@
           >
             RQ2
           </button>
-          <!-- <button
-            class="eda-browser-tab"
-            onclick="openBrowserTab(event, 'eda3')"
-          >
-            RQ3
-          </button> -->
           <button
             class="eda-browser-tab"
             onclick="openBrowserTab(event, 'eda4')"
           >
             Nutshell
           </button>
-          <!-- <button
-            class="eda-browser-tab"
-            onclick="openBrowserTab(event, 'eda5')"
-          >
-            Correlations
-          </button> -->
         </div>
 
-        <!-- Browser Window (Tab Content) -->
         <div class="eda-browser-window">
           <div id="eda1" class="eda-browser-content active">
             <div class="eda-graph">
@@ -318,9 +258,9 @@
                 <strong>Hypothesis Test Analysis:</strong>
                 <br />
                 Pearson Correlation (r): 0.7039
-                  This value indicates a strong positive linear correlation between urbanization and "Safely Managed" water access. <br>
+                This value indicates a strong positive linear correlation between urbanization and "Safely Managed" water access. <br>
                 P-value: 0.0106
-                  Since 0.0106 &lt; 0.05 (our significance level), the result is statistically significant.
+                Since 0.0106 &lt; 0.05 (our significance level), the result is statistically significant.
 
                 <br />
                 <br />
@@ -366,45 +306,6 @@
             </div>
           </div>
 
-          <!-- <div id="eda3" class="eda-browser-content">
-            <div class="eda-graph">
-              <a href="#">
-                <img src="img/R3.png" alt="" />
-              </a>
-            </div>
-            <div class="eda-description">
-              <h3>RQ3 Analysis</h3>
-              <p>
-                <strong>Plot Analysis</strong>
-                <br />
-                The scatter plot shows a clear positive relationship. The red
-                regression line trends upwards, indicating that regions with a
-                higher urbanization rate (further to the right) tend to have a
-                higher percentage of "Safely Managed" water access (higher up).
-                For example, you can see highly rural regions like MIMAROPA (28%
-                urban) and Bicol Region (22% urban) in the bottom-left quadrant,
-                with "Safely Managed" access rates around 25-30%. In contrast,
-                highly urbanized regions like Central Luzon (56% urban) are in
-                the top-right, with access rates above 60%.
-                <br />
-                <br />
-                <strong>Hypothesis Test Analysis:</strong>
-                <br />
-                Pearson Correlation (r): 0.7039 This value indicates a strong
-                positive linear correlation between urbanization and "Safely
-                Managed" water access. P-value: 0.0106 Since 0.0106&lt;0.05 (our
-                significance level), the result is statistically significant.
-                <br />
-                <br />
-                <strong>Conclusion:</strong> <br />
-                We reject the null hypothesis. The data provides strong evidence
-                that a region's urbanization rate has a significant positive
-                effect on its level of "Safely Managed" water access. This plot
-                and statistic directly answer the first research question.
-              </p>
-            </div>
-          </div> -->
-
           <div id="eda4" class="eda-browser-content">
             <div class="eda-graph">
               <a href="#">
@@ -416,28 +317,16 @@
               <p>
                 <strong>Plot Analysis</strong>
                 <br />
-                 X-Axis: The regions are sorted from most rural (like Bicol Region) on the left to most urban (like Central Luzon) on the right. <br>
+                X-Axis: The regions are sorted from most rural (like Bicol Region) on the left to most urban (like Central Luzon) on the right. <br>
                 Y-Axis: Shows the 100% composition of water access for each region.
                 As you move from left to right, you can visually see the dark blue bar (`Safely_Managed_2024`) grow larger, while the light blue bar (`Basic_2024`) shrinks.
 
                 <br />
                 <br />
-              
                 <strong>Conclusion:</strong> <br />
                 This single plot demonstrates the project's key finding: urbanization is strongly linked to a shift from "Basic" water access to "Safely Managed" water access. This answers both the research questions in one clear, compelling visual.
               </p>
             </div>
-          </div>
-
-          <!-- <div id="eda5" class="eda-browser-content">
-            <div class="eda-graph">[Graph Placeholder - Correlations]</div>
-            <div class="eda-description">
-              <h3>Correlations & Relationships</h3>
-              <p>
-                Examines relationships between population density, income, and
-                water quality indicators.
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -450,14 +339,11 @@
         <p class="about-subtitle">Meet the team behind this project.</p>
 
         <div class="team-grid">
-          <!-- MEMBER 1 -->
           <div class="team-member">
             <img src="img/berna.JPG" alt="Member 1" />
             <h3>Bernadette Tan Bernardino</h3>
-            <!-- <p class="role">Role / Position</p> -->
             <p class="contact">
-              📧 btbernardino@up.edu.ph<br />
-              <!-- 📱 +63 912 345 6789 -->
+              btbernardino@up.edu.ph<br />
             </p>
             <p class="description">
               As a 3rd-year Computer Science student, I am a diligent and motivated learner with a strong work ethic. I am adept at the troubleshooting and debugging process, and I am committed to seeing projects through from conception to completion.
@@ -466,14 +352,11 @@
             </p>
           </div>
 
-          <!-- MEMBER 2 -->
           <div class="team-member">
             <img src="img/kylian.jpg" alt="Member 2" />
             <h3>Kylian Buton</h3>
-            <!-- <p class="role">Role / Position</p> -->
             <p class="contact">
-              📧 cbuton@up.edu.ph<br />
-              <!-- 📱 +63 987 654 3210 -->
+              cbuton@up.edu.ph<br />
             </p>
             <p class="description">
               Hello! I’m a Transgender Computer Science Student who loves getting her work done efficiently, no shortcuts and no round-abouts, to get my work done fast and perfect gives me the most satisfaction.
@@ -481,14 +364,12 @@
               In terms of passion, I plan to be either a cybersecurity analyst or a web development programmer, both pique my interest and I would love to take on either as a future job after graduation.
             </p>
           </div>
-          <!-- MEMBER 3 -->
+
           <div class="team-member">
             <img src="img/coleen.png" alt="Member 3" />
             <h3>Coleen Gatus</h3>
-            <!-- <p class="role">Role / Position</p> -->
             <p class="contact">
-              📧 csgatus@up.edu.ph<br />
-              <!-- 📱 +63 900 000 0000 -->
+              csgatus@up.edu.ph<br />
             </p>
             <p class="description">
               Driven by curiosity and a strong sense of purpose, I’m a 3rd-year Computer Science student who thrives on solving complex problems. I see every project as an opportunity to push my limits, explore new perspectives, and grow through persistence and hard work.
@@ -497,14 +378,11 @@
             </p>
           </div>
 
-          <!-- MEMBER 4 -->
           <div class="team-member">
-            <img src="img/russ.jpg" alt="Member 3" />
+            <img src="img/russ.jpg" alt="Member 4" />
             <h3>Russell Lawrence N. Sison</h3>
-            <!-- <p class="role">Role / Position</p> -->
             <p class="contact">
-              📧 rnsison@up.edu.ph<br />
-              <!-- 📱 +63 900 000 0000 -->
+              rnsison@up.edu.ph<br />
             </p>
             <p class="description">
               Hello world! I’m a 3rd year Computer Science student with an eager interest to learn game development and the like. Adaptable and quick-witted, I am flexible in learning new technologies to innovate, develop, and create ideas. While not in work mode, I destress with hobbies such as playing video games and dancing.
@@ -513,264 +391,3 @@
         </div>
       </div>
     </section>
-
-    <!-- JAVASCRIPT: Typing animation + scroll behavior -->
-
-    <script>
-      (function () {
-        const message = "Hi! We are Group 2 and this is our project,"; // text to type
-        const typedEl = document.querySelector(".typed");
-        const cursor = document.querySelector(".cursor");
-        const hero = document.querySelector(".hero");
-        const title = document.querySelector(".title");
-
-        let i = 0;
-        const speed = 60; // typing speed (ms per character)
-        let typingDone = false;
-
-        // Types one character at a time
-        function typeChar() {
-          if (!typedEl) return;
-          if (i < message.length) {
-            typedEl.textContent += message.charAt(i);
-            i++;
-            setTimeout(typeChar, speed);
-          } else {
-            typingDone = true;
-            if (hero) hero.classList.add("typing-done");
-            if (title) title.setAttribute("aria-hidden", "false");
-
-            // Fade cursor out after typing
-            setTimeout(() => {
-              if (cursor) cursor.style.opacity = "0";
-            }, 300);
-          }
-        }
-
-        // Small delay before typing starts
-        function startTypingSoon() {
-          setTimeout(typeChar, 250);
-        }
-
-        // Parallax + color shift when scrolling
-        function onScroll() {
-          const y = window.scrollY || window.pageYOffset;
-          if (hero) {
-            hero.classList.toggle("scrolled", y > 20);
-          }
-
-          // Move the title slightly upward when scrolling
-          if (title) {
-            const offset = Math.min(-y * 0.5, 0);
-            title.style.transform = `translateY(${offset}px)`;
-          }
-        }
-
-        // Use requestAnimationFrame for smooth scrolling animation
-        let ticking = false;
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (!ticking) {
-              window.requestAnimationFrame(function () {
-                onScroll();
-                ticking = false;
-              });
-              ticking = true;
-            }
-          },
-          { passive: true }
-        );
-
-        // Start typing when DOM is ready
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", startTypingSoon);
-        } else {
-          startTypingSoon();
-        }
-
-        onScroll(); // Initialize scroll state
-      })();
-    </script>
-
-    <!-- ------------OVERVIEW--------------- -->
-    <script>
-      // Smooth transition toggle: when the overview content nears the viewport
-      (function () {
-        const overview = document.querySelector("#overview .overview-content");
-        if (!overview) return;
-
-        const obs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                document.body.classList.add("near-overview");
-              } else {
-                document.body.classList.remove("near-overview");
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.05,
-            rootMargin: "0px 0px -40% 0px", // trigger slightly before the section is fully visible
-          }
-        );
-
-        obs.observe(overview);
-      })();
-    </script>
-
-    <script>
-      const seeMore = document.querySelector(".see-more");
-      const overviewContent = document.querySelector(".overview-content");
-      const expandedPanels = document.getElementById("expanded-panels");
-      const overviewSection = document.getElementById("overview");
-
-      seeMore.addEventListener("click", function () {
-        const isExpanded = overviewContent.classList.toggle("expanded");
-
-        // Toggle aria attributes
-        seeMore.setAttribute("aria-expanded", isExpanded ? "true" : "false");
-        expandedPanels.setAttribute(
-          "aria-hidden",
-          isExpanded ? "false" : "true"
-        );
-        seeMore.textContent = isExpanded ? "See less" : "See more";
-
-        // Toggle the overview height state
-        overviewSection.classList.toggle("expanded", isExpanded);
-
-        // Scroll the expanded section into view when opening
-        if (isExpanded) {
-          overviewContent.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }
-      });
-    </script>
-
-    <script>
-      // Auto-collapse when user scrolls away from overview
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              overviewSection.classList.remove("expanded");
-              overviewContent.classList.remove("expanded");
-              seeMore.textContent = "See more";
-              seeMore.setAttribute("aria-expanded", "false");
-              expandedPanels.setAttribute("aria-hidden", "true");
-            }
-          });
-        },
-        { threshold: 0.1 } // how much of the section must be visible
-      );
-
-      observer.observe(overviewSection);
-    </script>
-    <!-- ----------------------------------------- -->
-    <!-- data collection animation -->
-    <!-- <script>
-      const track = document.querySelector(".dataset-track");
-      const slides = document.querySelectorAll(".dataset");
-      const leftBtn = document.querySelector(".scroll-btn.left");
-      const rightBtn = document.querySelector(".scroll-btn.right");
-
-      let index = 0;
-
-      function showSlide(i) {
-        index = (i + slides.length) % slides.length; // wraps around
-        track.style.transform = `translateX(-${index * 100}%)`;
-      }
-
-      // Auto scroll every 3 seconds
-      let autoScroll = setInterval(() => {
-        showSlide(index + 1);
-      }, 3000);
-
-      // Manual controls
-      rightBtn.addEventListener("click", () => showSlide(index + 1));
-      leftBtn.addEventListener("click", () => showSlide(index - 1));
-
-      // Pause auto-scroll on hover
-      const gallery = document.querySelector(".dataset-gallery");
-      gallery.addEventListener("mouseenter", () => clearInterval(autoScroll));
-      gallery.addEventListener("mouseleave", () => {
-        autoScroll = setInterval(() => showSlide(index + 1), 3000);
-      });
-    </script> -->
-
-    <script>
-  const track = document.querySelector('.dataset-track');
-  const leftBtn = document.querySelector('.scroll-btn.left');
-  const rightBtn = document.querySelector('.scroll-btn.right');
-  const datasets = document.querySelectorAll('.dataset');
-  let currentIndex = 0;
-
-  // Calculate total datasets
-  const total = datasets.length;
-
-  // Function to scroll to a dataset
-  function scrollToDataset(index) {
-    const datasetWidth = datasets[0].offsetWidth;
-    track.style.transform = `translateX(-${index * datasetWidth}px)`;
-  }
-
-  // Right button click → move to next
-  rightBtn.addEventListener('click', () => {
-    currentIndex++;
-    if (currentIndex >= total) {
-      currentIndex = 0; // Loop back to first
-    }
-    scrollToDataset(currentIndex);
-  });
-
-  // Left button click → move to previous
-  leftBtn.addEventListener('click', () => {
-    currentIndex--;
-    if (currentIndex < 0) {
-      currentIndex = total - 1; // Loop to last
-    }
-    scrollToDataset(currentIndex);
-  });
-
-  // Optional: smooth transition
-  track.style.transition = 'transform 0.5s ease';
-</script>
-
-
-    <script>
-      const dataCollection = document.querySelector("#data-collection");
-      if (dataCollection) {
-        const obs2 = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                document.body.classList.add("near-data");
-              } else {
-                document.body.classList.remove("near-data");
-              }
-            });
-          },
-          { threshold: 0.05, rootMargin: "0px 0px -40% 0px" }
-        );
-        obs2.observe(dataCollection);
-      }
-    </script>
-
-    <script>
-      function openBrowserTab(evt, tabId) {
-        const tabs = document.querySelectorAll(".eda-browser-tab");
-        const contents = document.querySelectorAll(".eda-browser-content");
-
-        tabs.forEach((tab) => tab.classList.remove("active"));
-        contents.forEach((content) => content.classList.remove("active"));
-
-        evt.currentTarget.classList.add("active");
-        document.getElementById(tabId).classList.add("active");
-      }
-    </script>
-  </body>
-</html>
