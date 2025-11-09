@@ -1,12 +1,6 @@
-/* ----------------------------------------------------------
-   FONT IMPORTS
----------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,700");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/* ----------------------------------------------------------
-   GLOBAL RESET & BASE STYLES
----------------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -69,17 +63,48 @@ body {
   justify-content: center;
   color: white;
   position: relative;
-  padding-top: 64px; /* Prevent nav overlap */
+  padding-top: 64px; 
   transition: background 0.6s ease;
+  overflow: hidden;
 }
 
-/* Soft fade at hero bottom for blending into next section */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  z-index: 0;        
+}
+
+.title, .intro {
+  position: relative;
+  z-index: 1;        /* above video */
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0.5;
+}
+
+.hero title h1 {
+  transition: font-size 0.3s ease;
+}
+
+/* main landing to overview TRANSITION */
 .hero::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -1px; /* overlap by 1px to hide seam */
+  bottom: -1px;
   height: 180px;
   background: linear-gradient(
     180deg,
@@ -91,13 +116,11 @@ body {
   transition: opacity 360ms ease, transform 360ms ease;
 }
 
-/* Fade hero bottom near overview for video visibility */
 body.near-overview .hero::after {
   opacity: 0;
   transform: translateY(20px);
 }
 
-/* Dynamic hero background on scroll */
 .hero {
   background: transparent;
   transition: background 0.6s ease;
@@ -107,14 +130,25 @@ body.near-overview .hero::after {
   background: linear-gradient(180deg, #03a9f4 0%, #0288d1 100%);
 }
 
-/* Title and intro text adjustments on scroll */
-.hero.scrolled .title h1:nth-child(1) { -webkit-text-stroke: 2px white; }
-.hero.scrolled .title h1:nth-child(2) { color: #0288d1; }
-.hero.scrolled .title h3 { opacity: 1; color: white; transform: none; }
+.hero.scrolled .title h1:nth-child(1) {
+  -webkit-text-stroke: 2px white;
+}
 
+.hero.scrolled .title h1:nth-child(2) {
+  color: #0288d1;
+}
+
+.hero.scrolled .title h3 {
+  opacity: 1;
+  color: white;
+}
+
+
+
+/* typing */
 .intro {
   position: absolute;
-  top: 25%;
+  top: 33%;
   font-size: 1.2rem;
   color: black;
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -132,15 +166,16 @@ body.near-overview .hero::after {
 }
 
 /* ----------------------------------------------------------
-   TITLE & WAVE TEXT EFFECT
+   TITLE + WAVE TEXT EFFECT
 ---------------------------------------------------------- */
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: center;
   gap: 12px;
-  opacity: 0; /* Hidden until typing finishes */
+  opacity: 0;
   transform: translateY(20px);
   transition: all 0.36s ease;
 }
@@ -150,18 +185,17 @@ body.near-overview .hero::after {
   transform: translateY(0);
 }
 
+/* main unequal streams: unscrolled */
 .title h1 {
-  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  font-size: clamp(2.8rem, 8vw, 5rem);
   letter-spacing: -1px;
 }
 
-/* Outline layer (stroke) */
 .title h1:nth-child(1) {
   color: transparent;
   -webkit-text-stroke: 2px #03a9f4;
 }
 
-/* Filled layer (wave animation) */
 .title h1:nth-child(2) {
   color: #0288d1;
   position: absolute;
@@ -170,7 +204,6 @@ body.near-overview .hero::after {
   animation: wave 4s ease-in-out infinite;
 }
 
-/* Subtitle */
 .title h3 {
   font-size: clamp(1.6rem, 3vw, 1.5rem);
   font-weight: 500;
@@ -179,10 +212,11 @@ body.near-overview .hero::after {
   letter-spacing: 1px;
   text-transform: none;
   max-width: 900px;
+  margin-top: -15px;
 }
 
 .subtitle {
-  font-size: clamp(1.2rem, 2.4vw, 1.3rem);
+  font-size: 1rem;
   line-height: 1.5;
   max-width: 900px;
   text-align: center;
@@ -195,15 +229,16 @@ body.near-overview .hero::after {
   transform: translateY(0);
 }
 
-/* Wave keyframes for title effect */
 @keyframes wave {
-  0%, 100% { clip-path: polygon(0 44%, 13% 43%, 25% 48%, 37% 56%, 48% 65%, 60% 65%, 73% 58%, 86% 48%, 100% 45%, 100% 120%, 0 120%); }
-  50% { clip-path: polygon(0 57%, 11% 67%, 25% 67%, 38% 60%, 50% 48%, 62% 43%, 75% 45%, 87% 53%, 100% 57%, 100% 120%, 0 120%); }
+  0%, 100% {
+    clip-path: polygon(0 44%, 13% 43%, 25% 48%, 37% 56%, 48% 65%, 60% 65%, 73% 58%, 86% 48%, 100% 45%, 100% 120%, 0 120%);
+  }
+  50% {
+    clip-path: polygon(0 57%, 11% 67%, 25% 67%, 38% 60%, 50% 48%, 62% 43%, 75% 45%, 87% 53%, 100% 57%, 100% 120%, 0 120%);
+  }
 }
 
-/* ----------------------------------------------------------
-   CONTENT SECTIONS
----------------------------------------------------------- */
+/* main to overview */
 section:not(.hero) {
   min-height: 100vh;
   padding: 84px 20px;
@@ -214,6 +249,7 @@ section:not(.hero) {
   width: 100%;
 }
 
+/* Base content container */
 .content {
   color: #0b1220;
   position: relative;
@@ -221,41 +257,68 @@ section:not(.hero) {
   background: #ffffff;
   transition: background 500ms ease;
   width: 100%;
+  height: 100%;
+  margin-top: 0;
+  transition: margin-top 360ms ease;
 }
 
-/* Overview section expansions */
-.overview-content.expanded ~ .content { background: transparent; }
+/* Adjust margin when near overview */
+body.near-overview .content {
+  margin-top: -120px;
+}
 
+/* Transparent background when overview expanded */
+.overview-content.expanded ~ .content {
+  background: transparent;
+}
+
+/* ==========================================================
+   OVERVIEW SECTION
+========================================================== */
+
+#overview {
+  position: relative;
+  background: #ffffff;
+  padding: 3rem 2rem;
+  transition: all 0.8s ease !important;
+  overflow: hidden;
+  margin-bottom: -10px;
+  z-index: 1;
+}
+
+/* When overview is expanded */
 #overview.expanded {
-  height: 170vh;
+  min-height: 190vh;
   padding-top: 300px;
   transition: all 0.8s ease !important;
 }
 
-/* Overlap hero when near overview for seamless transition */
-body.near-overview .content { margin-top: -120px; }
+/* Subtle overlay at the bottom */
+#overview::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 300px;
+  pointer-events: none;
+  z-index: 4;
+}
 
-/* Video background container */
+/* ==========================================================
+   VIDEO BACKGROUND
+========================================================== */
+
 .video-container {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 100%;
   z-index: 0;
 }
 
-.video-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.overview-content.expanded ~ .video-container::after { opacity: 0; }
-
+/* Background video */
 .video-container video {
   width: 100%;
   height: 100%;
@@ -264,9 +327,29 @@ body.near-overview .content { margin-top: -120px; }
   transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.overview-content.expanded ~ .video-container video { opacity: 0.85; }
+/* White overlay layer */
+.video-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
 
-/* Glass panel for text and content */
+/* When overview expanded – fade video in */
+.overview-content.expanded ~ .video-container::after {
+  opacity: 0;
+}
+
+.overview-content.expanded ~ .video-container video {
+  opacity: 0.85;
+}
+
+/* ==========================================================
+   OVERVIEW CONTENT & PANELS
+========================================================== */
+
 .overview-content {
   position: relative;
   z-index: 2;
@@ -274,14 +357,19 @@ body.near-overview .content { margin-top: -120px; }
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
-  padding: 3rem 4rem 6rem;
+  /* padding: 3rem 4rem 6rem; */
   gap: 1rem;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  height: 600px;
 }
 
+.overview-content.expanded {
+  height: 1200px;
+}
+
+/* Glass-like main panel */
 .glass-panel {
   background: #ffffff;
   backdrop-filter: blur(8px);
@@ -290,7 +378,7 @@ body.near-overview .content { margin-top: -120px; }
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 15rem;
+  margin-top: 5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transform: translateY(0);
   transition: all 360ms ease;
@@ -300,17 +388,23 @@ body.near-overview .content { margin-top: -120px; }
   z-index: 3;
 }
 
+/* Glass panel text */
 .glass-panel h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #03a9f4;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   text-align: center;
 }
 
 .glass-panel p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.6;
   text-align: justify;
+}
+
+.glass-panel.main-overview {
+  margin-top: 5rem;
+  transition: margin 0.6s ease, transform 0.6s ease;
 }
 
 /* "See more" button */
@@ -321,7 +415,7 @@ body.near-overview .content { margin-top: -120px; }
   background: #03a9f4;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 8px; 
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(3,169,244,0.18);
@@ -330,10 +424,15 @@ body.near-overview .content { margin-top: -120px; }
   z-index: 4;
 }
 
-.see-more:active { transform: translateY(1px); }
-.see-more:focus-visible { outline: 3px solid rgba(3,169,244,0.2); }
+.see-more:active {
+  transform: translateY(1px);
+}
 
-/* Expanded panels inside overview */
+.see-more:focus-visible {
+  outline: 3px solid rgba(3,169,244,0.2);
+}
+
+/* Expanded panel container */
 .expanded-panels {
   display: flex;
   flex-direction: column;
@@ -345,15 +444,23 @@ body.near-overview .content { margin-top: -120px; }
   transform: translateY(-10px);
   pointer-events: none;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 1rem;
 }
 
+/* When expanded */
 .overview-content.expanded .expanded-panels {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-/* Individual panels */
+/* glass panel when expanded */
+.overview-content.expanded .glass-panel.main-overview {
+  margin-top: -120px; 
+  transform: translateY(-20px); 
+}
+
+/* Individual info panels */
 .panel {
   background: #ffffff;
   border-radius: 12px;
@@ -365,27 +472,73 @@ body.near-overview .content { margin-top: -120px; }
   transition: opacity 300ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
 }
 
+/* When expanded, panels appear smoothly */
 .overview-content.expanded .panel {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-/* Panel row delays */
+/* Transition delays for staggered animation */
 .expanded-row.top .panel:nth-child(1) { transition-delay: 0.06s; }
 .expanded-row.top .panel:nth-child(2) { transition-delay: 0.12s; }
 .expanded-row.top .panel:nth-child(3) { transition-delay: 0.18s; }
 .expanded-row.bottom .panel:nth-child(1) { transition-delay: 0.24s; }
 .expanded-row.bottom .panel:nth-child(2) { transition-delay: 0.30s; }
 
-/* Panel row layout */
+/* Row layout for panels */
 .expanded-row.top,
-.expanded-row.bottom { display:flex; gap:1rem; width:100%; }
-.expanded-row.top .panel { flex:1; min-width:220px; }
-.expanded-row.bottom .panel { flex:1; min-width:280px; }
+.expanded-row.bottom {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.expanded-row.top .panel { flex: 1; min-width: 220px; }
+.expanded-row.bottom .panel { flex: 1; min-width: 280px; }
 
-.panel h3 { margin: 0 0 1rem 0; color: #0288d1; font-size: 1.5rem; }
-.panel h4 { margin: 0 0 1rem 0; color: black; font-size: 1rem; }
-.panel p { margin: 0; font-size: 1.1rem; line-height: 1.5; color: #0b1220; text-align: left; }
+/* Panel text styling */
+.panel h3 {
+  margin: 0 0 1rem 0;
+  color: #0288d1;
+  font-size: 1.5rem;
+}
+
+.panel h4 {
+  margin: 0 0 1rem 0;
+  color: black;
+  font-size: 1.1rem;
+}
+
+.panel p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #0b1220;
+  text-align: justify;
+}
+
+#overview::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    white 0%,
+    #03a9f4 95%,
+    #03a9f4 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  z-index: 4;
+}
+
+/* transition to data */
+body.near-data #overview::after {
+  opacity: 0;
+  transform: translateY(30px);
+}
 
 /* ----------------------------------------------------------
    DATA COLLECTION SECTION
@@ -394,13 +547,19 @@ body.near-overview .content { margin-top: -120px; }
   background: linear-gradient(to top, #ffffff 0%, #03a9f4 100%);
   padding: 80px 0;
   color: #fff;
-  min-height: 50vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: background 1s ease-in-out;
+  transition: transform 0.8s ease;
+  transform: translateY(0);
+}
+
+body.near-data #data-collection {
+  transform: translateY(-70px);
+  opacity: 1;
 }
 
 .data-collection-wrapper {
@@ -412,23 +571,69 @@ body.near-overview .content { margin-top: -120px; }
   max-width: 1200px;
 }
 
+.data-title {
+  text-align: center;
+}
+
 .data-title h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 10px;
   color: white;
 }
 
-.data-title p { font-size: 1.2rem; color: white; }
+.data-title p {
+  font-size: 1rem;
+  color: white;
+}
 
-/* Gallery slider */
-.dataset-gallery { position: relative; width: 80%; max-width: 1000px; overflow: hidden; }
-.dataset-track { display: flex; scroll-behavior: smooth; transition: transform 0.3s ease; gap: 20px; }
-.dataset { flex: 0 0 300px; text-align: center; text-decoration: none; color: black; background: rgba(255,255,255,0.9); border-radius: 16px; overflow: hidden; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.dataset:hover { transform: scale(1.05); }
-.dataset img { width: 100%; height: 200px; object-fit: cover; }
-.dataset h3 { font-size: 1rem; margin: 10px; }
+.dataset-gallery {
+  position: relative;
+  /* width: 80%; */
+  max-width: 1000px;
+  overflow: hidden;
+  height: auto;
+}
 
-/* Gallery arrows */
+.dataset-track {
+  /* display: flex;
+  scroll-behavior: smooth;
+  transition: transform 0.3s ease;
+  gap: 20px; */
+
+  display: flex;
+  gap: 20px;
+  will-change: transform; /* improves performance */
+}
+
+
+.dataset {
+  flex: 0 0 25%; 
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  /* height: 250px; */
+}
+
+.dataset:hover {
+  transform: scale(1.04);
+}
+
+.dataset img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.dataset h3 {
+  font-size: 0.9rem;
+  margin: 10px;
+}
+
 .scroll-btn {
   position: absolute;
   top: 50%;
@@ -443,9 +648,18 @@ body.near-overview .content { margin-top: -120px; }
   border-radius: 50%;
   transition: background 0.3s;
 }
-.scroll-btn:hover { background-color: rgba(0, 0, 0, 0.7); }
-.scroll-btn.left { left: 5px; }
-.scroll-btn.right { right: 5px; }
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.scroll-btn.left {
+  left: 5px;
+}
+
+.scroll-btn.right {
+  right: 5px;
+}
 
 /* ----------------------------------------------------------
    EDA BROWSER SECTION
@@ -458,8 +672,14 @@ body.near-overview .content { margin-top: -120px; }
   flex-direction: column;
 }
 
-.eda-browser-title { font-size: 2.5rem; color: #03a9f4; margin-bottom: 1.5rem; text-align: center; }
+.eda-browser-title {
+  font-size: 2.5rem;
+  color: #03a9f4;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
+/* Browser Container */
 .eda-browser {
   display: flex;
   flex-direction: column;
@@ -473,6 +693,7 @@ body.near-overview .content { margin-top: -120px; }
   overflow: hidden;
 }
 
+/* Tabs at the top */
 .eda-browser-tabs {
   display: flex;
   background-color: #d1d5db;
@@ -492,18 +713,42 @@ body.near-overview .content { margin-top: -120px; }
   transition: all 0.2s ease;
 }
 
-.eda-browser-tab:hover { background-color: #f9fafb; }
-.eda-browser-tab.active { background-color: #ffffff; border-bottom: 4px solid #03a9f4; font-weight: bold; color: #03a9f4; }
+.eda-browser-tab:hover {
+  background-color: #f9fafb;
+}
 
-.eda-browser-window { background-color: #fff; flex-grow: 1; position: relative; padding: 20px; }
-.eda-browser-content { display: none; animation: fadeIn 0.4s ease; height: calc(100vh - 180px); overflow-y: auto; }
-.eda-browser-content.active { display: block; }
+.eda-browser-tab.active {
+  background-color: #ffffff;
+  border-bottom: 4px solid #03a9f4;
+  font-weight: bold;
+  color: #03a9f4;
+}
+
+/* Tab Content Window */
+.eda-browser-window {
+  background-color: #fff;
+  flex-grow: 1;
+  position: relative;
+  padding: 20px;
+}
+
+.eda-browser-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.eda-browser-content.active {
+  display: block;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Graph Placeholder */
 .eda-graph {
   width: 100%;
   height: 70vh;
@@ -517,10 +762,24 @@ body.near-overview .content { margin-top: -120px; }
   margin: 20px 1px 30px 1px;
 }
 
-.eda-graph img { max-width: 100%; max-height: auto; border-radius: 12px; }
-.eda-description { background-color: #f3f4f6; border-radius: 10px; padding: 15px 20px; line-height: 1.6; color: #111827; }
-.eda-description h3 { align-items: center; }
+.eda-graph img {
+  max-width: 100%;
+  max-height: auto;
+  border-radius: 12px;
+}
 
+/* Description */
+.eda-description {
+  background-color: #f3f4f6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  line-height: 1.6;
+  color: #111827;
+}
+
+.eda-description h3 {
+  align-items: center;
+}
 /* ----------------------------------------------------------
    ABOUT US SECTION
 ---------------------------------------------------------- */
@@ -535,22 +794,36 @@ body.near-overview .content { margin-top: -120px; }
   justify-content: center;
 }
 
-.about-container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-#about-us h2 { font-size: 2.5rem; margin-bottom: 10px; color: white; }
-.about-subtitle { font-size: 1.1rem; margin-bottom: 50px; color: white; }
+.about-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-/* Team grid layout */
+#about-us h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 50px;
+  color: white;
+}
+
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Exactly 2 per row */
   gap: 40px;
-  justify-content: center;
+  justify-content: center; /* Center the grid horizontally */
   align-items: stretch;
-  width: 80%;
+  width: 80%; /* Optional: controls how wide the grid is */
   max-width: 1000px;
   margin: 0 auto;
 }
+
 
 .team-member {
   background: rgba(255, 255, 255, 0.9);
@@ -560,38 +833,42 @@ body.near-overview .content { margin-top: -120px; }
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-member:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
-.team-member img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #03a9f4; }
-.team-member h3 { font-size: 1.3rem; margin-bottom: 5px; color: #03a9f4; }
-.team-member .role { font-weight: bold; color: #555; margin-bottom: 10px; }
-.team-member .contact { font-size: 0.9rem; color: #333; line-height: 1.4; margin-bottom: 15px; }
-.team-member .description { font-size: 0.95rem; color: #444; line-height: 1.5; }
-
-/* ----------------------------------------------------------
-   CURSOR & TYPING EFFECTS
----------------------------------------------------------- */
-.typed { white-space: nowrap; }
-
-.cursor {
-  display: inline-block;
-  width: 0.8ch;
-  animation: blink 1s steps(2, start) infinite;
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-@keyframes blink { 50% { opacity: 0; } }
-
-/* ----------------------------------------------------------
-   RESPONSIVE STYLES
----------------------------------------------------------- */
-@media (max-width: 768px) {
-  .dataset-card img { height: 220px; }
-  .nav-btn { font-size: 1.6rem; }
+.team-member img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #03a9f4;
 }
 
-@media (max-width: 600px) {
-  .intro { font-size: 1rem; }
-  .title h1 { font-size: 4.5rem; }
+.team-member h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: #03a9f4;
 }
 
-/* Smooth scrolling */
-html { scroll-behavior: smooth; }
+.team-member .role {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.team-member .contact {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.team-member .description {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
