@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Unequal Streams: Analyzing Access to Quality Water in the Philippines!!!
+      Unequal Streams: Analyzing Access to Quality Water in the Philippines
     </title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -15,21 +15,15 @@
       <ul>
         <li><a href="#overview">Overview</a></li>
         <li><a href="#data-collection">Data</a></li>
-        <li><a href="#eda">EDA</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#results">Results</a></li>
         <li><a href="#about-us">Team</a></li>
       </ul>
     </nav>
     <!-- test -->
     <!-- HERO SECTION (Landing Page Intro) -->
     <section class="hero">
-      <!-- <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="hero-video"
-        src="img/sea.mp4"
-      ></video> -->
+      <img src="img/newbg2.jpg" class="hero-background-image" />
       <!-- Typing animation introduction -->
       <div class="intro" aria-hidden="false">
         <span class="typed" aria-live="polite"></span>
@@ -42,12 +36,6 @@
         <h1>Unequal Streams:</h1>
         <h3>Analyzing Access to Quality Water in the Philippines</h3>
       </div>
-
-      <!-- (Optional decorative waves; currently commented out in CSS) -->
-      <!-- <div class="wave wave1"></div>
-      <div class="wave wave2"></div>
-      <div class="wave wave3"></div>
-      <div class="wave wave4"></div> -->
 
       <!-- Subtitles (fade in after typing) -->
       <p class="subtitle">
@@ -67,10 +55,94 @@
       </p>
     </section>
 
+    <section id="overview" class="overview-carousel content">
+      <img
+        src="img/1phvsworld.jpg"
+        alt="Water access background"
+        class="overview-bg-image"
+      />
+      <div class="overview-gradient-overlay"></div>
+
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div id="overview-page-1" class="carousel-page active-page">
+            <div class="big-letter-content">
+              <h1>Our Project Focus</h1>
+              <p class="big-first-letter">
+                Torem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <p>
+                Secondary paragraph of the overview page 1 template. You can use
+                any of your uploaded images for the background (e.g.,
+                `img/1phvsworld.jpg`).
+              </p>
+            </div>
+          </div>
+
+          <div id="overview-page-2" class="carousel-page">
+            <div class="page-2-grid">
+              <div class="page-2-panel title-panel">
+                <h2>Did you know...</h2>
+              </div>
+              <div class="page-2-panel statement-panel">
+                <h3>Problem Statement</h3>
+                <p>
+                  Unequal access to quality water persists, especially between
+                  urban and rural areas. Political, economic, and environmental
+                  factors hinder sustainable water systems.
+                </p>
+              </div>
+              <div class="page-2-panel rq-panel">
+                <h3>Research Questions</h3>
+                <ul>
+                  <li>
+                    1. How does urbanization impact water quality in the
+                    Philippines?
+                  </li>
+                  <li>
+                    2. What are the disparities in water access between rural
+                    and urban communities?
+                  </li>
+                </ul>
+              </div>
+              <div class="page-2-panel hypothesis-panel">
+                <h3>Hypothesis</h3>
+                <p>
+                  Null: Urban development has no significant effect on household
+                  access to quality water.
+                </p>
+                <p>
+                  Alternative: Urban development significantly affects household
+                  access to quality water.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-arrow left" onclick="changeOverviewPage(-1)">
+        &#10140;
+      </button>
+      <button class="carousel-arrow right" onclick="changeOverviewPage(1)">
+        &#10140;
+      </button>
+      <div class="pagination-dots">
+        <span class="dot active-dot" onclick="goToOverviewPage(0)"></span>
+        <span class="dot" onclick="goToOverviewPage(1)"></span>
+      </div>
+    </section>
+
     <!-- OVERVIEW SECTION -->
-    <section id="overview" class="content">
-      <div class="overview-content">
-        <div class="glass-panel main-overview">
+    <section id="data" class="content">
+      <div class="data-content">
+        <div class="glass-panel main-data">
           <h2>Overview</h2>
           <p>
             Access to quality water remains uneven in the Philippines. Rapid
@@ -453,18 +525,55 @@
 
     <!-- JAVASCRIPT -->
     <script>
+      let overviewPageIndex = 0;
+      const totalOverviewPages = 2;
+      const track2 = document.querySelector("#overview .carousel-track");
+      const dots = document.querySelectorAll("#overview .pagination-dots .dot");
+
+      function updateOverviewCarousel() {
+        if (track2) {
+          const offset = overviewPageIndex * -100;
+          track2.style.transform = `translateX(${offset}%)`;
+        }
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active-dot", index === overviewPageIndex);
+        });
+      }
+
+      function changeOverviewPage(direction) {
+        let newIndex = overviewPageIndex + direction;
+
+        if (newIndex < 0) {
+          newIndex = totalOverviewPages - 1;
+        } else if (newIndex >= totalOverviewPages) {
+          newIndex = 0;
+        }
+
+        overviewPageIndex = newIndex;
+        updateOverviewCarousel();
+      }
+
+      function goToOverviewPage(index) {
+        overviewPageIndex = index;
+        updateOverviewCarousel();
+      }
+
+      document.addEventListener("DOMContentLoaded", updateOverviewCarousel);
+    </script>
+
+    <script>
       (function () {
-        const message = "Hi! We are Group 2 and this is our project,"; // text to type
+        const message = "Hi! We are Group 2 and this is our project,";
         const typedEl = document.querySelector(".typed");
         const cursor = document.querySelector(".cursor");
         const hero = document.querySelector(".hero");
         const title = document.querySelector(".title");
 
         let i = 0;
-        const speed = 60; // typing speed (ms per character)
+        const speed = 60;
         let typingDone = false;
 
-        // Types one character at a time
         function typeChar() {
           if (!typedEl) return;
           if (i < message.length) {
@@ -476,33 +585,34 @@
             if (hero) hero.classList.add("typing-done");
             if (title) title.setAttribute("aria-hidden", "false");
 
-            // Fade cursor out after typing
             setTimeout(() => {
               if (cursor) cursor.style.opacity = "0";
             }, 300);
           }
         }
 
-        // Small delay before typing starts
         function startTypingSoon() {
           setTimeout(typeChar, 250);
         }
 
-        // Parallax + color shift when scrolling
         function onScroll() {
           const y = window.scrollY || window.pageYOffset;
+          const nav = document.querySelector(".site-nav");
+
           if (hero) {
             hero.classList.toggle("scrolled", y > 20);
           }
 
-          // Move the title slightly upward when scrolling
+          if (nav) {
+            nav.classList.toggle("scrolled", y > 20);
+          }
+
           if (title) {
             const offset = Math.min(-y * 0.3, 0);
             title.style.transform = `translateY(${offset}px)`;
           }
         }
 
-        // Use requestAnimationFrame for smooth scrolling animation
         let ticking = false;
         window.addEventListener(
           "scroll",
@@ -518,157 +628,37 @@
           { passive: true }
         );
 
-        // Start typing when DOM is ready
         if (document.readyState === "loading") {
           document.addEventListener("DOMContentLoaded", startTypingSoon);
         } else {
           startTypingSoon();
         }
 
-        onScroll(); // Initialize scroll state
+        onScroll();
       })();
     </script>
 
-    <!-- ------------OVERVIEW--------------- -->
-    <!-- <script>
-      // --- OBSERVER FOR OVERVIEW SECTION ---
-      (function () {
-        const overview = document.querySelector("#overview");
-        const dataSection = document.querySelector("#data-collection");
-        if (!overview || !dataSection) return;
-
-        const body = document.body;
-
-        const obsOverview = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (
-                entry.isIntersecting &&
-                !body.classList.contains("near-data")
-              ) {
-                // only activate if not already in data section
-                body.classList.add("near-overview");
-              } else if (
-                !entry.isIntersecting &&
-                body.classList.contains("near-overview")
-              ) {
-                body.classList.remove("near-overview");
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px 0px -60% 0px",
-          }
-        );
-
-        const obsData = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                body.classList.remove("near-overview"); // force remove overview
-                body.classList.add("near-data");
-              } else {
-                body.classList.remove("near-data");
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "-40% 0px 0px 0px",
-          }
-        );
-
-        obsOverview.observe(overview);
-        obsData.observe(dataSection);
-      })();
-    </script> -->
-
-    <!-- <script>
-      // // Smooth transition toggle: when the overview content nears the viewport
-      // (function () {
-      //   const overview = document.querySelector("#overview");
-      //   if (!overview) return;
-
-      //   const obs = new IntersectionObserver(
-      //     (entries) => {
-      //       entries.forEach((entry) => {
-      //         if (entry.isIntersecting) {
-      //           document.body.classList.add("near-overview");
-      //         } else {
-      //           document.body.classList.remove("near-overview");
-      //         }
-      //       });
-      //     },
-      //     {
-      //       root: null,
-      //       threshold: 0.1,
-      //       // the bigger the val, the longer it takes to take action
-      //       rootMargin: "0px 0px -60% 0px", // trigger slightly before the section is fully visible
-      //     }
-      //   );
-
-      //   obs.observe(overview);
-      // })();
-
-      const overview = document.querySelector("#overview");
-      if (overview) {
-        const obsOverview = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (
-                entry.isIntersecting &&
-                !document.body.classList.contains("near-data")
-              ) {
-                // only add if we're not already in near-data
-                document.body.classList.add("near-overview");
-              } else if (!entry.isIntersecting) {
-                document.body.classList.remove("near-overview");
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.15,
-            rootMargin: "0px 0px -60% 0px", // the bigger the val, the longer it takes to take action
-          }
-        );
-        obsOverview.observe(overview);
-      }
-    </script> -->
+    
 
     <script>
-      const overview = document.querySelector("#overview");
-      if (overview) {
-        const obsOverview = new IntersectionObserver(
+      const newOverviewSection = document.getElementById("overview");
+      if (newOverviewSection) {
+        const obsNewOverview = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (
-                entry.isIntersecting &&
-                !document.body.classList.contains("near-data")
-              ) {
-                // Only add near-overview if we’re NOT in near-data
-                document.body.classList.add("near-overview");
-              }
-              // Remove near-overview when it's not intersecting
-              // but ONLY if near-data is not active (to prevent bounce)
-              else if (
-                !entry.isIntersecting &&
-                !document.body.classList.contains("near-data")
-              ) {
-                document.body.classList.remove("near-overview");
-              }
+              document.body.classList.toggle(
+                "near-overview",
+                entry.isIntersecting
+              );
             });
           },
           {
             root: null,
-            threshold: 0.15,
-            rootMargin: "0px 0px -60% 0px", // Ends earlier to prevent overlap
+            threshold: 0.05,
+            rootMargin: "0px 0px -50% 0px",
           }
         );
-        obsOverview.observe(overview);
+        obsNewOverview.observe(newOverviewSection);
       }
     </script>
 
@@ -680,19 +670,13 @@
 
       seeMore.addEventListener("click", function () {
         const isExpanded = overviewContent.classList.toggle("expanded");
-
-        // Toggle aria attributes
         seeMore.setAttribute("aria-expanded", isExpanded ? "true" : "false");
         expandedPanels.setAttribute(
           "aria-hidden",
           isExpanded ? "false" : "true"
         );
         seeMore.textContent = isExpanded ? "See less" : "See more";
-
-        // Toggle the overview height state
         overviewSection.classList.toggle("expanded", isExpanded);
-
-        // Scroll the expanded section into view when opening
         if (isExpanded) {
           overviewContent.scrollIntoView({
             behavior: "smooth",
@@ -703,7 +687,6 @@
     </script>
 
     <script>
-      // Auto-collapse when user scrolls away from overview
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -716,7 +699,7 @@
             }
           });
         },
-        { threshold: 0.1 } // how much of the section must be visible
+        { threshold: 0.1 }
       );
 
       observer.observe(overviewSection);
@@ -751,79 +734,28 @@
       }
     </script>
 
-    <!-- <script>
-      const dataSection = document.querySelector("#data-collection");
-      if (dataSection) {
-        const obsData = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                document.body.classList.add("near-data");
-              } else {
-                document.body.classList.remove("near-data");
-              }
-            });
-          },
-          {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px 0px -40% 0px",
-          }
-        );
-        obsData.observe(dataSection);
-      }
-    </script> -->
-    <!-- <script>
-      const track = document.querySelector(".dataset-track");
-      const slides = document.querySelectorAll(".dataset");
-      const leftBtn = document.querySelector(".scroll-btn.left");
-      const rightBtn = document.querySelector(".scroll-btn.right");
 
-      let index = 0;
-
-      function showSlide(i) {
-        index = (i + slides.length) % slides.length; // wraps around
-        track.style.transform = `translateX(-${index * 100}%)`;
-      }
-
-      // Auto scroll every 3 seconds
-      let autoScroll = setInterval(() => {
-        showSlide(index + 1);
-      }, 3000);
-
-      // Manual controls
-      rightBtn.addEventListener("click", () => showSlide(index + 1));
-      leftBtn.addEventListener("click", () => showSlide(index - 1));
-
-      // Pause auto-scroll on hover
-      const gallery = document.querySelector(".dataset-gallery");
-      gallery.addEventListener("mouseenter", () => clearInterval(autoScroll));
-      gallery.addEventListener("mouseleave", () => {
-        autoScroll = setInterval(() => showSlide(index + 1), 3000);
-      });
-    </script> -->
 
     <script>
       const track = document.querySelector(".dataset-track");
       const datasets = Array.from(track.children);
 
-      // Clone datasets for seamless looping
       datasets.forEach((dataset) => {
         const clone = dataset.cloneNode(true);
         track.appendChild(clone);
       });
 
       let scrollPos = 0;
-      const speed = 1; // pixels per frame
+      const speed = 1;
       let isPaused = false;
       const leftBtn = document.querySelector(".scroll-btn.left");
       const rightBtn = document.querySelector(".scroll-btn.right");
-      const datasetWidth = datasets[0].offsetWidth + 20; // include gap
+      const datasetWidth = datasets[0].offsetWidth + 20;
 
       function autoScroll() {
         if (!isPaused) {
           scrollPos += speed;
-          const trackWidth = track.scrollWidth / 2; // because we cloned
+          const trackWidth = track.scrollWidth / 2;
           if (scrollPos >= trackWidth) scrollPos = 0;
           track.style.transform = `translateX(-${scrollPos}px)`;
         }
@@ -836,8 +768,6 @@
         el.addEventListener("mouseenter", () => (isPaused = true));
         el.addEventListener("mouseleave", () => (isPaused = false));
       });
-
-      
 
       rightBtn.addEventListener("click", () => {
         scrollPos += datasetWidth;
@@ -853,85 +783,41 @@
         track.style.transform = `translateX(-${scrollPos}px)`;
       });
     </script>
-    <!-- <script>
-      const track = document.querySelector(".dataset-track");
-      const leftBtn = document.querySelector(".scroll-btn.left");
-      const rightBtn = document.querySelector(".scroll-btn.right");
-      const datasets = document.querySelectorAll(".dataset");
-      let currentIndex = 0;
-
-      // Calculate total datasets
-      const total = datasets.length;
-
-      // Function to scroll to a dataset
-      function scrollToDataset(index) {
-        const datasetWidth = datasets[0].offsetWidth;
-        track.style.transform = `translateX(-${index * datasetWidth}px)`;
-      }
-
-      // Right button click → move to next
-      rightBtn.addEventListener("click", () => {
-        currentIndex++;
-        if (currentIndex >= total) {
-          currentIndex = 0; // Loop back to first
-        }
-        scrollToDataset(currentIndex);
-      });
-
-      // Left button click → move to previous
-      leftBtn.addEventListener("click", () => {
-        currentIndex--;
-        if (currentIndex < 0) {
-          currentIndex = total - 1; // Loop to last
-        }
-        scrollToDataset(currentIndex);
-      });
-
-      // Optional: smooth transition
-      track.style.transition = "transform 0.5s ease";
-    </script> -->
-
+    
     <!-- EDA -->
 
     <script>
       function openBrowserTab(evt, tabId) {
         const tabs = document.querySelectorAll(".eda-browser-tab");
         const contents = document.querySelectorAll(".eda-browser-content");
-
         tabs.forEach((tab) => tab.classList.remove("active"));
         contents.forEach((content) => content.classList.remove("active"));
-
         evt.currentTarget.classList.add("active");
         document.getElementById(tabId).classList.add("active");
       }
     </script>
+
+    <script>
+      const heroSection = document.querySelector(".hero");
+      const newOverview = document.getElementById("overview");
+      let hasSkipped = false;
+
+      window.addEventListener("scroll", () => {
+        if (!heroSection || !newOverview) return;
+        const heroHeight = heroSection.offsetHeight;
+        const scrollY = window.scrollY;
+
+        if (
+          scrollY > heroHeight * 0.4 &&
+          scrollY < heroHeight * 0.9 &&
+          !hasSkipped
+        ) {
+          newOverview.scrollIntoView({ behavior: "smooth" });
+          hasSkipped = true;
+        } else if (scrollY === 0) {
+          hasSkipped = false;
+        }
+      });
+    </script>
   </body>
 </html>
-
-<!-- <script>
-  // Smooth transition toggle: when the overview content nears the viewport
-  (function () {
-    const overview = document.querySelector("#overview .overview-content");
-    if (!overview) return;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            document.body.classList.add("near-overview");
-          } else {
-            document.body.classList.remove("near-overview");
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.05,
-        rootMargin: "0px 0px -40% 0px", // trigger slightly before the section is fully visible
-      }
-    );
-
-    obs.observe(overview);
-  })();
-</script> -->
-
