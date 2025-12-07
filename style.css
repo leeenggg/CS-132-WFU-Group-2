@@ -22,11 +22,17 @@ body {
   top: 0;
   width: 100%;
   height: 64px;
-  background: rgba(3, 169, 244, 0.95);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  box-shadow: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-nav.scrolled {
+  background: #1581BF;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
@@ -63,25 +69,32 @@ body {
   justify-content: center;
   color: white;
   position: relative;
-  padding-top: 64px; 
+  padding-top: 64px;
   transition: background 0.6s ease;
   overflow: hidden;
 }
 
-.hero-video {
+.hero-background-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  z-index: 0;        
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
 .title, .intro {
   position: relative;
-  z-index: 1;        /* above video */
+  z-index: 1;
   text-align: center;
+}
+
+.hero.scrolled .subtitle {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero::before {
@@ -92,13 +105,14 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0.5;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.4s ease;
 }
 
 .hero title h1 {
   transition: font-size 0.3s ease;
 }
 
-/* main landing to overview TRANSITION */
 .hero::after {
   content: '';
   position: absolute;
@@ -126,16 +140,12 @@ body.near-overview .hero::after {
   transition: background 0.6s ease;
 }
 
-.hero.scrolled {
-  background: linear-gradient(180deg, #03a9f4 0%, #0288d1 100%);
-}
-
 .hero.scrolled .title h1:nth-child(1) {
   -webkit-text-stroke: 2px white;
 }
 
 .hero.scrolled .title h1:nth-child(2) {
-  color: #0288d1;
+  color: #1581BF;
 }
 
 .hero.scrolled .title h3 {
@@ -143,14 +153,11 @@ body.near-overview .hero::after {
   color: white;
 }
 
-
-
-/* typing */
 .intro {
   position: absolute;
   top: 33%;
   font-size: 1.2rem;
-  color: black;
+  color: white;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -185,7 +192,6 @@ body.near-overview .hero::after {
   transform: translateY(0);
 }
 
-/* main unequal streams: unscrolled */
 .title h1 {
   font-size: clamp(2.8rem, 8vw, 5rem);
   letter-spacing: -1px;
@@ -193,11 +199,11 @@ body.near-overview .hero::after {
 
 .title h1:nth-child(1) {
   color: transparent;
-  -webkit-text-stroke: 2px #03a9f4;
+  -webkit-text-stroke: 2px white;
 }
 
 .title h1:nth-child(2) {
-  color: #0288d1;
+  color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -207,10 +213,9 @@ body.near-overview .hero::after {
 .title h3 {
   font-size: clamp(1.6rem, 3vw, 1.5rem);
   font-weight: 500;
-  color: #03a9f4;
+  color: white;
   margin: 0;
   letter-spacing: 1px;
-  text-transform: none;
   max-width: 900px;
   margin-top: -15px;
 }
@@ -222,11 +227,6 @@ body.near-overview .hero::after {
   text-align: center;
   opacity: 0;
   transition: all 0.36s ease;
-}
-
-.hero.typing-done .subtitle {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @keyframes wave {
@@ -249,7 +249,6 @@ section:not(.hero) {
   width: 100%;
 }
 
-/* Base content container */
 .content {
   color: #0b1220;
   position: relative;
@@ -259,24 +258,170 @@ section:not(.hero) {
   width: 100%;
   height: 100%;
   margin-top: 0;
-  transition: margin-top 360ms ease;
 }
 
-/* Adjust margin when near overview */
-body.near-overview .content {
-  margin-top: -120px;
+/* ==========================================================
+   NEW OVERVIEW CAROUSEL
+========================================================== */
+#overview {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  min-height: 100vh;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Transparent background when overview expanded */
-.overview-content.expanded ~ .content {
+body.near-overview #overview {
+  opacity: 1;
+}
+
+.overview-gradient-top {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 4;
+  pointer-events: none;
+}
+
+.overview-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.6);
+}
+
+.overview-gradient-overlay {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+}
+
+.carousel-page {
+  min-width: 100%;
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.big-letter-content {
+  max-width: 800px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.big-first-letter:first-letter {
+  float: left;
+  font-size: 4.5em;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  font-weight: 700;
+  color: #03a9f4;
+}
+
+.page-2-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-left: 5px solid #03a9f4;
+  color: #0b1220;
+}
+
+.title-panel {
+  grid-column: 1 / 4;
+  background: #03a9f4;
+  color: white;
+  text-align: center;
+  border-left: none;
+  padding: 30px;
+}
+
+.page-2-panel h3 {
+  color: #0288d1;
+  margin-bottom: 15px;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
   background: transparent;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.3s;
+  opacity: 0.4;
+  font-family: Arial, sans-serif;
+}
+
+.carousel-arrow:hover {
+  background: transparent;
+  opacity: 1;
+}
+
+.carousel-arrow.left {
+  left: 20px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.carousel-arrow.right {
+  right: 20px;
+  transform: translateY(-50%) rotate(0deg);
 }
 
 /* ==========================================================
    OVERVIEW SECTION
 ========================================================== */
-
-#overview {
+#data {
   position: relative;
   background: #ffffff;
   padding: 3rem 2rem;
@@ -286,15 +431,13 @@ body.near-overview .content {
   z-index: 1;
 }
 
-/* When overview is expanded */
-#overview.expanded {
+#data.expanded {
   min-height: 190vh;
   padding-top: 300px;
   transition: all 0.8s ease !important;
 }
 
-/* Subtle overlay at the bottom */
-#overview::after {
+#data::after {
   content: '';
   position: absolute;
   left: 0;
@@ -308,7 +451,6 @@ body.near-overview .content {
 /* ==========================================================
    VIDEO BACKGROUND
 ========================================================== */
-
 .video-container {
   position: absolute;
   top: 0;
@@ -318,7 +460,6 @@ body.near-overview .content {
   z-index: 0;
 }
 
-/* Background video */
 .video-container video {
   width: 100%;
   height: 100%;
@@ -327,7 +468,6 @@ body.near-overview .content {
   transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* White overlay layer */
 .video-container::after {
   content: '';
   position: absolute;
@@ -337,27 +477,24 @@ body.near-overview .content {
   height: 100%;
 }
 
-/* When overview expanded – fade video in */
-.overview-content.expanded ~ .video-container::after {
+.data-content.expanded ~ .video-container::after {
   opacity: 0;
 }
 
-.overview-content.expanded ~ .video-container video {
+.data-content.expanded ~ .video-container video {
   opacity: 0.85;
 }
 
 /* ==========================================================
    OVERVIEW CONTENT & PANELS
 ========================================================== */
-
-.overview-content {
+.data-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* padding: 3rem 4rem 6rem; */
   gap: 1rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -365,11 +502,10 @@ body.near-overview .content {
   height: 600px;
 }
 
-.overview-content.expanded {
+.data-content.expanded {
   height: 1200px;
 }
 
-/* Glass-like main panel */
 .glass-panel {
   background: #ffffff;
   backdrop-filter: blur(8px);
@@ -388,7 +524,6 @@ body.near-overview .content {
   z-index: 3;
 }
 
-/* Glass panel text */
 .glass-panel h2 {
   font-size: 2rem;
   color: #03a9f4;
@@ -402,12 +537,11 @@ body.near-overview .content {
   text-align: justify;
 }
 
-.glass-panel.main-overview {
+.glass-panel.main-data {
   margin-top: 5rem;
   transition: margin 0.6s ease, transform 0.6s ease;
 }
 
-/* "See more" button */
 .see-more {
   display: inline-block;
   margin: 1.25rem auto 0;
@@ -415,7 +549,7 @@ body.near-overview .content {
   background: #03a9f4;
   color: #fff;
   border: none;
-  border-radius: 8px; 
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(3,169,244,0.18);
@@ -432,7 +566,6 @@ body.near-overview .content {
   outline: 3px solid rgba(3,169,244,0.2);
 }
 
-/* Expanded panel container */
 .expanded-panels {
   display: flex;
   flex-direction: column;
@@ -447,20 +580,17 @@ body.near-overview .content {
   padding: 0 1rem;
 }
 
-/* When expanded */
-.overview-content.expanded .expanded-panels {
+.data-content.expanded .expanded-panels {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-/* glass panel when expanded */
-.overview-content.expanded .glass-panel.main-overview {
-  margin-top: -120px; 
-  transform: translateY(-20px); 
+.data-content.expanded .glass-panel.main-data {
+  margin-top: -120px;
+  transform: translateY(-20px);
 }
 
-/* Individual info panels */
 .panel {
   background: #ffffff;
   border-radius: 12px;
@@ -472,26 +602,24 @@ body.near-overview .content {
   transition: opacity 300ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
 }
 
-/* When expanded, panels appear smoothly */
-.overview-content.expanded .panel {
+.data-content.expanded .panel {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-/* Transition delays for staggered animation */
 .expanded-row.top .panel:nth-child(1) { transition-delay: 0.06s; }
 .expanded-row.top .panel:nth-child(2) { transition-delay: 0.12s; }
 .expanded-row.top .panel:nth-child(3) { transition-delay: 0.18s; }
 .expanded-row.bottom .panel:nth-child(1) { transition-delay: 0.24s; }
 .expanded-row.bottom .panel:nth-child(2) { transition-delay: 0.30s; }
 
-/* Row layout for panels */
 .expanded-row.top,
 .expanded-row.bottom {
   display: flex;
   gap: 1rem;
   width: 100%;
 }
+
 .expanded-row.top .panel { flex: 1; min-width: 220px; }
 .expanded-row.bottom .panel { flex: 1; min-width: 280px; }
 
@@ -516,7 +644,7 @@ body.near-overview .content {
   text-align: justify;
 }
 
-#overview::after {
+#data::after {
   content: '';
   position: absolute;
   left: 0;
@@ -535,7 +663,7 @@ body.near-overview .content {
 }
 
 /* transition to data */
-body.near-data #overview::after {
+body.near-data #data::after {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -595,11 +723,6 @@ body.near-data #data-collection {
 }
 
 .dataset-track {
-  /* display: flex;
-  scroll-behavior: smooth;
-  transition: transform 0.3s ease;
-  gap: 20px; */
-
   display: flex;
   gap: 20px;
   will-change: transform; /* improves performance */
@@ -724,7 +847,6 @@ body.near-data #data-collection {
   color: #03a9f4;
 }
 
-/* Tab Content Window */
 .eda-browser-window {
   background-color: #fff;
   flex-grow: 1;
@@ -748,7 +870,6 @@ body.near-data #data-collection {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Graph Placeholder */
 .eda-graph {
   width: 100%;
   height: 70vh;
@@ -815,11 +936,11 @@ body.near-data #data-collection {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Exactly 2 per row */
+  grid-template-columns: repeat(2, 1fr); 
   gap: 40px;
-  justify-content: center; /* Center the grid horizontally */
+  justify-content: center; 
   align-items: stretch;
-  width: 80%; /* Optional: controls how wide the grid is */
+  width: 80%; 
   max-width: 1000px;
   margin: 0 auto;
 }
