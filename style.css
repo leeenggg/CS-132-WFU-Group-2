@@ -130,6 +130,12 @@ body {
   transition: opacity 360ms ease, transform 360ms ease;
 }
 
+body.near-overview .hero {
+  opacity: 0;
+  pointer-events: none; /* Prevent clicking hidden links */
+  transition: opacity 0.5s ease-in-out;
+}
+
 body.near-overview .hero::after {
   opacity: 0;
   transform: translateY(20px);
@@ -337,6 +343,7 @@ body.near-overview #overview {
 .carousel-track {
   display: flex;
   width: 100%;
+  transition: none;
 }
 
 .carousel-page {
@@ -362,30 +369,82 @@ body.near-overview #overview {
   line-height: 0.8;
   margin-right: 0.1em;
   font-weight: 700;
-  color: #03a9f4;
+  color: #1581BF;
+}
+
+
+.page-2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
+  width: 100%;
+  max-width: 900px; 
+  margin: 0 auto;
 }
 
 .page-2-panel {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border-left: 5px solid #03a9f4;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-left: 5px solid #1581BF;
   color: #0b1220;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 100px; 
+  cursor: pointer; 
 }
 
-.title-panel {
-  grid-column: 1 / 4;
-  background: #03a9f4;
-  color: white;
-  text-align: center;
-  border-left: none;
-  padding: 30px;
+.page-2-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .page-2-panel h3 {
-  color: #0288d1;
-  margin-bottom: 15px;
+  color: #1581BF;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+/* hover line */
+.page-2-panel:hover h3 {
+  border-bottom: 2px solid #1581BF;
+}
+
+/* content hidden */
+.panel-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.4s ease;
+  width: 100%;
+  text-align: left; 
+}
+
+/* 5. The Reveal (On Hover) */
+.page-2-panel:hover .panel-content {
+  max-height: 500px; 
+  opacity: 1;
+  margin-top: 15px; 
+}
+
+.panel-content p, .panel-content li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+}
+.panel-content ul {
+  padding-left: 20px;
+  list-style-type: disc;
 }
 
 .carousel-arrow {
