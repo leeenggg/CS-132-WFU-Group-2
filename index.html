@@ -74,13 +74,30 @@
                 is on an increasing trend in the Philippines, it is a cause of
                 concern if the Philippines may provide access to clean water for
                 families around the country.
-              </p> <br>
-              <p>It is from this context that spurted the question – what is the current state of access to quality water in the Philippines, and what are the external factors affecting it? We wanted to find connections between political and economic factors, as well as the differences in urban and rural areas to see if they affect access to quality water in the country given the Philippines’ rising population. </p>
-              <p class="links">
-                <a href="https://www.abs-cbn.com/news/business/2025/5/9/primewater-issue-affects-16-million-consumers-palace-says-1756">PrimeWater issue affects 16 million consumers, Palace says | ABS-CBN News</a>
-                <br>
-                <a href="https://www.rappler.com/philippines/elections/cavite-polls-spotlight-residents-grievances-villar-primewater-2025/ ">In Cavite, elections spotlight residents' longstanding woes with Villars' PrimeWater</a>
               </p>
+              <br />
+              <p>
+                It is from this context that spurted the question – what is the
+                current state of access to quality water in the Philippines, and
+                what are the external factors affecting it? We wanted to find
+                connections between political and economic factors, as well as
+                the differences in urban and rural areas to see if they affect
+                access to quality water in the country given the Philippines’
+                rising population.
+              </p>
+              <div class="links">
+                <a
+                  href="https://www.abs-cbn.com/news/business/2025/5/9/primewater-issue-affects-16-million-consumers-palace-says-1756"
+                  >PrimeWater issue affects 16 million consumers, Palace says |
+                  ABS-CBN News</a
+                >
+                <br />
+                <a
+                  href="https://www.rappler.com/philippines/elections/cavite-polls-spotlight-residents-grievances-villar-primewater-2025/ "
+                  >In Cavite, elections spotlight residents' longstanding woes
+                  with Villars' PrimeWater</a
+                >
+              </div>
             </div>
           </div>
 
@@ -178,21 +195,30 @@
             <div class="panel">
               <h3>Description</h3>
               <p>
-                We utilized datasets covering water access, population demographics for urban and rural areas, and GDP. These were sourced from reputable bodies like Philippine Statistics Authority (PSA), UNICEF, International Monetary Fund (IMF), World Health Organization (WHO), and World Bank Group.
+                We utilized datasets covering water access, population
+                demographics for urban and rural areas, and GDP. These were
+                sourced from reputable bodies like Philippine Statistics
+                Authority (PSA), UNICEF, International Monetary Fund (IMF),
+                World Health Organization (WHO), and World Bank Group.
               </p>
             </div>
 
             <div class="panel">
               <h3>Size</h3>
               <p>
-                The data covers regional data in the Philippines concerning around 18 regions, spanning over multiple years (generally ranging from 2010 to 2024)
+                The data covers regional data in the Philippines concerning
+                around 18 regions, spanning over multiple years (generally
+                ranging from 2010 to 2024)
               </p>
             </div>
 
             <div class="panel">
               <h3>Preprocessing</h3>
               <p>
-                Data was cleaned to handle missing values, with names and values being generalized and standardized to one to allow proper processing and minimize error when conducting comparisons across regions of different sizes.
+                Data was cleaned to handle missing values, with names and values
+                being generalized and standardized to one to allow proper
+                processing and minimize error when conducting comparisons across
+                regions of different sizes.
               </p>
             </div>
           </div>
@@ -201,8 +227,9 @@
             <div class="panel gallery-panel">
               <h3>Collection</h3>
               <p>
-                Data was gathered through desk research on government websites (PSA), international organization reports (UNICEF), and reputable academic databases (Kaggle).
-
+                Data was gathered through desk research on government websites
+                (PSA), international organization reports (UNICEF), and
+                reputable academic databases (Kaggle).
               </p>
 
               <div class="dataset-gallery">
@@ -418,46 +445,109 @@
         <div class="results-grid">
           <div class="result-card" onclick="toggleResult(this)">
             <h3>Discussion</h3>
-            <p>
-              Our analysis revealed a strong positive correlation between
-              urbanization and access to safely managed water. While urban
-              centers benefit from better infrastructure, rural regions lag
-              significantly behind, relying mostly on basic or unimproved
-              sources.
-            </p>
+            <div class="content-peek-wrapper">
+              <p>
+                Our Exploratory Data Analysis reveals that the primary driver of
+                water quality in the Philippines is structural rather than
+                purely economic. A strong, statistically significant correlation
+                between urbanization rates and "safely managed" water access
+                indicates that population density is currently a prerequisite
+                for viable, high-quality infrastructure. This suggests that the
+                country's utility model relies heavily on the economies of scale
+                found in dense urban centers like NCR, effectively leaving rural
+                provinces to rely on "basic" sources due to the logistical and
+                financial difficulties of extending piped networks to dispersed
+                populations. Crucially, our results challenge the assumption
+                that rapid regional economic growth automatically translates to
+                better public amenities. The lack of a significant link between
+                recent GDP growth and water quality highlights a "development
+                lag", where economic gains in developing regions have not yet
+                flowed into public sanitation infrastructure.
+              </p>
+            </div>
             <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
           <div class="result-card" onclick="toggleResult(this)">
             <h3>Implications</h3>
-            <p>
-              These disparities suggest that current national policies favored
-              urban development. To achieve universal access, investment must
-              shift towards decentralized water systems for rural areas that
-              cannot easily connect to main urban grids.
-            </p>
+            <div class="content-peek-wrapper">
+              <p>
+                This data exposes a stark divide in quality rather than
+                quantity. While the Philippines has largely achieved universal
+                access to "improved" water sources, a deep inequality persists
+                in water safety. Rural families are forced to shoulder the
+                hidden health tax of treating their own water or risking
+                waterborne diseases, which can trap provinces in poverty despite
+                national economic gains. Furthermore, the strong link between
+                urbanization and quality services reinforces the pull factor of
+                major cities, exacerbating urban overcrowding and informal
+                settlements. Ultimately, the data implies that relying solely on
+                market-driven economic growth to close the water gap is
+                ineffective, targeted state interventions and subsidies are
+                necessary to build "safely managed" systems in lower-density
+                areas where they are not commercially immediate.
+              </p>
+            </div>
             <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
           <div class="result-card" onclick="toggleResult(this)">
             <h3>Limitations</h3>
-            <p>
-              The study was limited by data availability for 2021-2023 in
-              certain rural provinces. Additionally, "access" does not always
-              guarantee "consistency," as water interruptions were not fully
-              captured in the available datasets.
-            </p>
+            <div class="content-peek-wrapper">
+              <p>
+                A major limitation of the study was the data available on
+                specific areas of water quality in the Philippines. As such, we
+                were only able to collect from a singular source (WHO/UNICEF
+                JMP), which aggregated data per region, resulting in the
+                analysis being limited to per region and not in specific areas
+                of a region where water quality may vary. Thus, results on data
+                analysis are only relevant to the regional level and cannot be
+                generalized to per city or even household level for Filipinos.
+                Additionally, data on rural and urban areas and population were
+                either very limited or not available, with the most recent
+                available urban/rural population data being 2020 collected from
+                PSA, having to result to extrapolating and estimating rural and
+                urban population data in order to analyze for the year 2025.
+                Analysis was also limited to economic factors, namely GDP, as
+                political factors were difficult to quantify and collate to
+                provide meaningful analysis results correlating to water
+                quality. This resulted in research question 2 being partially
+                answered, as political factors were not taken into account in
+                assessing its correlation to water quality.
+              </p>
+            </div>
             <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
           <div class="result-card" onclick="toggleResult(this)">
             <h3>Conclusion</h3>
-            <p>
-              In conclusion, while the Philippines has made strides in water
-              sanitation, the urban-rural divide remains a critical hurdle.
-              Bridging this gap requires targeted infrastructure projects and
-              policy reforms that prioritize underserved communities.
-            </p>
+            <div class="content-peek-wrapper">
+              <p>
+                Overall, the study shows that urbanization, and not economic
+                growth, is the main factor affecting water quality in the
+                Philippines. Urban regions have more access to safely managed
+                water because dense populations make investments on piped
+                systems financially viable, while rural areas remain dependent
+                on basic sources due to the high cost of extending
+                infrastructure. This creates a clear quality gap between the two
+                areas, with rural families facing greater health risks and
+                higher personal costs. The lack of correlation between GDP and
+                water quality further suggests that economic gains are not being
+                matched by improvements in water access, especially in rural
+                communities.
+              </p> <br>
+              <p>
+                Because of this, the study highlights the ongoing divide in
+                access to high-quality water and the need for stronger support
+                for rural areas. Filipinos can use the findings to identify
+                which families and regions have better or worse access to clean
+                water, using population and water access data as key indicators.
+                Thus, this study may be used as an added research metric to
+                further strengthen policies that may be created to give all
+                Filipino families, may it be in urban or rural areas, equal
+                access to clean, safe, and quality water.
+              </p>
+            </div>
             <p class="more-info">&lt;click for more&gt;</p>
           </div>
         </div>
@@ -803,7 +893,7 @@
 
           function autoScroll() {
             if (!isPaused) {
-              scrollPos += 0.5; 
+              scrollPos += 0.5;
               if (scrollPos >= galleryTrack.scrollWidth / 2) {
                 scrollPos = 0;
               }
