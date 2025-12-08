@@ -1063,6 +1063,7 @@ body.near-eda #eda {
   background: white;
   color: #333;
   padding: 80px 20px;
+  transition: padding-bottom 0.5s ease-in-out;
 }
 
 .results-content {
@@ -1084,6 +1085,12 @@ body.near-eda #eda {
   text-align: left;
   position: relative; 
   min-height: 500px;
+}
+
+.results-grid .recommendation-card {
+    grid-column: 1 / 3; 
+    border-top: 5px solid #1581BF; 
+    min-height: 100px; 
 }
 
 .result-card {
@@ -1139,6 +1146,16 @@ body.near-eda #eda {
     border-radius: 5px;
 }
 
+.results-grid.active {
+    position: relative; 
+    z-index: 5;
+}
+
+.results-grid.active .result-card:not(.expanded) {
+    opacity: 0.1; 
+    pointer-events: none; 
+    transition: opacity 0.4s ease;
+}
 .result-card .more-info {
   text-align: right;
   font-size: 0.6rem;
@@ -1161,7 +1178,8 @@ body.near-eda #eda {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 90vh;
   z-index: 20; 
   transform: scale(1); 
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
