@@ -23,7 +23,7 @@
     </nav>
 
     <!-- HERO SECTION  -->
-    <section class="hero">
+    <section id="hero" class="hero">
       <img src="img/newbg2.jpg" class="hero-background-image" />
       <div class="intro" aria-hidden="false">
         <span class="typed" aria-live="polite"></span>
@@ -419,7 +419,7 @@
         <h2>Results & Discussion</h2>
 
         <div class="results-grid">
-          <div class="result-card">
+          <div class="result-card" onclick="toggleResult(this)">
             <h3>Discussion</h3>
             <p>
               Our analysis revealed a strong positive correlation between
@@ -428,9 +428,10 @@
               significantly behind, relying mostly on basic or unimproved
               sources.
             </p>
+            <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
-          <div class="result-card">
+          <div class="result-card" onclick="toggleResult(this)">
             <h3>Implications</h3>
             <p>
               These disparities suggest that current national policies favored
@@ -438,9 +439,10 @@
               shift towards decentralized water systems for rural areas that
               cannot easily connect to main urban grids.
             </p>
+            <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
-          <div class="result-card">
+          <div class="result-card" onclick="toggleResult(this)">
             <h3>Limitations</h3>
             <p>
               The study was limited by data availability for 2021-2023 in
@@ -448,9 +450,10 @@
               guarantee "consistency," as water interruptions were not fully
               captured in the available datasets.
             </p>
+            <p class="more-info">&lt;click for more&gt;</p>
           </div>
 
-          <div class="result-card">
+          <div class="result-card" onclick="toggleResult(this)">
             <h3>Conclusion</h3>
             <p>
               In conclusion, while the Philippines has made strides in water
@@ -458,6 +461,7 @@
               Bridging this gap requires targeted infrastructure projects and
               policy reforms that prioritize underserved communities.
             </p>
+            <p class="more-info">&lt;click for more&gt;</p>
           </div>
         </div>
       </div>
@@ -466,14 +470,18 @@
     <!-- ABOUT US SECTION -->
     <section id="about-us">
       <div class="about-container">
-        <h2>About Us</h2>
+        <h1>About Us</h1>
         <p class="about-subtitle">Meet the team behind this project.</p>
 
         <div class="team-grid">
           <div class="team-member">
             <img src="img/berna.JPG" alt="Member 1" />
             <h3>Bernadette Tan Bernardino</h3>
-            <p class="contact">btbernardino@up.edu.ph<br /></p>
+            <h2>Data Analyst</h2>
+            <p class="contact">
+              <a href="mailto: btbernardino@up.edu.ph">btbernardino@up.edu.ph</a
+              ><br />
+            </p>
             <p class="description">
               As a 3rd-year Computer Science student, I am a diligent and
               motivated learner with a strong work ethic. I am adept at the
@@ -488,7 +496,10 @@
           <div class="team-member">
             <img src="img/kylian.jpg" alt="Member 2" />
             <h3>Kylian Buton</h3>
-            <p class="contact">cbuton@up.edu.ph<br /></p>
+            <h2>Data Analyst</h2>
+            <p class="contact">
+              <a href="mailto: cbuton@up.edu.ph">cbuton@up.edu.ph</a><br />
+            </p>
             <p class="description">
               Hello! I’m a Transgender Computer Science Student who loves
               getting her work done efficiently, no shortcuts and no
@@ -503,7 +514,10 @@
           <div class="team-member">
             <img src="img/coleen.png" alt="Member 3" />
             <h3>Coleen Gatus</h3>
-            <p class="contact">csgatus@up.edu.ph<br /></p>
+            <h2>Web Designer</h2>
+            <p class="contact">
+              <a href="mailto: csgatus@up.edu.ph">csgatus@up.edu.ph</a><br />
+            </p>
             <p class="description">
               Driven by curiosity and a strong sense of purpose, I’m a 3rd-year
               Computer Science student who thrives on solving complex problems.
@@ -520,7 +534,10 @@
           <div class="team-member">
             <img src="img/russ.jpg" alt="Member 4" />
             <h3>Russell Lawrence N. Sison</h3>
-            <p class="contact">rnsison@up.edu.ph<br /></p>
+            <h2>Data Analyst</h2>
+            <p class="contact">
+              <a href="mailto: rnsison@up.edu.ph">rnsison@up.edu.ph</a><br />
+            </p>
             <p class="description">
               Hello world! I’m a 3rd year Computer Science student with an eager
               interest to learn game development and the like. Adaptable and
@@ -544,8 +561,18 @@
         document.getElementById(tabId).classList.add("active");
       }
 
+      function toggleResult(clickedCard) {
+        if (clickedCard.classList.contains("expanded")) {
+          clickedCard.classList.remove("expanded");
+          return;
+        }
+        document.querySelectorAll(".result-card").forEach((card) => {
+          card.classList.remove("expanded");
+        });
+        clickedCard.classList.add("expanded");
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
-        // typing
         const message = "Hi! We are Group 2 and this is our project,";
         const typedEl = document.querySelector(".typed");
         const cursor = document.querySelector(".cursor");
@@ -569,7 +596,6 @@
         }
         setTimeout(typeChar, 250);
 
-        // active nav
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".site-nav ul li a");
 
@@ -578,7 +604,7 @@
           sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            if (window.scrollY >= sectionTop - sectionHeight / 3) {
               current = section.getAttribute("id");
             }
           });
@@ -591,94 +617,91 @@
           });
         });
 
-        // scroll
-        const nav = document.querySelector(".site-nav");
-        const overviewSection = document.getElementById("overview");
-        const dataColSection = document.getElementById("data-collection");
-        const edaSection = document.getElementById("eda");
+        // 3. UNIVERSAL SCROLL GLIDE
+        const sectionIds = [
+          "hero",
+          "overview",
+          "data",
+          "eda",
+          "results",
+          "about-us",
+        ];
+        let skippedState = {};
+        sectionIds.forEach((id) => (skippedState[id] = false));
 
-        let skippedToOverview = false;
-        let skippedToEda = false;
+        const nav = document.querySelector(".site-nav");
 
         window.addEventListener(
           "scroll",
           () => {
             const y = window.scrollY;
 
-            // nav and hero
+            // Parallax
             if (hero) hero.classList.toggle("scrolled", y > 20);
             if (nav) nav.classList.toggle("scrolled", y > 20);
             if (title)
               title.style.transform = `translateY(${Math.min(-y * 0.3, 0)}px)`;
 
-            // hero to overview
-            if (hero && overviewSection) {
-              const heroHeight = hero.offsetHeight;
-              if (
-                y > heroHeight * 0.4 &&
-                y < heroHeight * 0.9 &&
-                !skippedToOverview
-              ) {
-                if (!document.body.classList.contains("near-overview")) {
-                  overviewSection.scrollIntoView({ behavior: "smooth" });
-                  skippedToOverview = true;
-                }
-              } else if (y < 50) {
-                skippedToOverview = false;
-              }
-            }
+            for (let j = 0; j < sectionIds.length - 1; j++) {
+              const currentId = sectionIds[j];
+              const nextId = sectionIds[j + 1];
 
-            // data to eda
-            if (dataColSection && edaSection) {
-              const dcTop = dataColSection.offsetTop;
-              const dcHeight = dataColSection.offsetHeight;
-              if (
-                y > dcTop + dcHeight * 0.6 &&
-                y < dcTop + dcHeight &&
-                !skippedToEda
-              ) {
-                edaSection.scrollIntoView({ behavior: "smooth" });
-                skippedToEda = true;
-              } else if (y < dcTop) {
-                skippedToEda = false;
+              const currentEl = document.getElementById(currentId);
+              const nextEl = document.getElementById(nextId);
+
+              if (currentEl && nextEl) {
+                const currentTop = currentEl.offsetTop;
+                const currentHeight = currentEl.offsetHeight;
+
+                if (y >= currentTop && y < currentTop + currentHeight) {
+                  const progress = (y - currentTop) / currentHeight;
+
+                  let threshold = 0.4;
+
+                  if (currentEl.classList.contains("expanded")) {
+                    threshold = 0.95;
+                  }
+                  const gallery = currentEl.querySelector(".dataset-gallery");
+                  if (gallery && gallery.matches(":hover")) {
+                    threshold = 1.1; // Effectively disable glide
+                  }
+                  if (
+                    progress > threshold &&
+                    progress < 0.99 &&
+                    !skippedState[currentId]
+                  ) {
+                    nextEl.scrollIntoView({ behavior: "smooth" });
+                    skippedState[currentId] = true;
+                  }
+                }
+                // Reset state if we scroll back up
+                else if (y < currentTop) {
+                  skippedState[currentId] = false;
+                }
               }
             }
           },
           { passive: true }
         );
 
-        // visibility
-        if (overviewSection) {
-          const obsOverview = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                document.body.classList.toggle(
-                  "near-overview",
-                  entry.isIntersecting
-                );
-              });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -50% 0px" }
-          );
-          obsOverview.observe(overviewSection);
-        }
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                document.body.classList.add(`near-${entry.target.id}`);
+              } else {
+                document.body.classList.remove(`near-${entry.target.id}`);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
 
-        if (edaSection) {
-          const obsEda = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                document.body.classList.toggle(
-                  "near-eda",
-                  entry.isIntersecting
-                );
-              });
-            },
-            { threshold: 0.15 }
-          );
-          obsEda.observe(edaSection);
-        }
+        sectionIds.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) revealObserver.observe(el);
+        });
 
-        // loop
         const track = document.querySelector("#overview .carousel-track");
         const dots = document.querySelectorAll(
           "#overview .pagination-dots .dot"
@@ -740,7 +763,6 @@
           });
         }
 
-        // DATA SECTION
         const seeMore = document.querySelector(".see-more");
         const dataContent = document.querySelector(".data-content");
         const expandedPanels = document.getElementById("expanded-panels");
@@ -758,7 +780,8 @@
               isExpanded ? "false" : "true"
             );
             seeMore.textContent = isExpanded ? "See less" : "See more";
-            dataSection.classList.toggle("expanded", isExpanded);
+            dataSection.classList.toggle("expanded", isExpanded); 
+
             if (isExpanded) {
               dataContent.scrollIntoView({
                 behavior: "smooth",
@@ -766,24 +789,8 @@
               });
             }
           });
-
-          const obsData = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                  dataSection.classList.remove("expanded");
-                  dataContent.classList.remove("expanded");
-                  seeMore.textContent = "See more";
-                  expandedPanels.setAttribute("aria-hidden", "true");
-                }
-              });
-            },
-            { threshold: 0.1 }
-          );
-          obsData.observe(dataSection);
         }
 
-        // Gallery Auto-Scroll
         const galleryTrack = document.querySelector(".dataset-track");
         if (galleryTrack) {
           Array.from(galleryTrack.children).forEach((dataset) => {
@@ -799,7 +806,7 @@
 
           function autoScroll() {
             if (!isPaused) {
-              scrollPos += 0.5;
+              scrollPos += 1; // Speed
               if (scrollPos >= galleryTrack.scrollWidth / 2) {
                 scrollPos = 0;
               }
