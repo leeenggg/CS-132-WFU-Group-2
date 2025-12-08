@@ -74,8 +74,14 @@ body {
   color: white;
   position: relative;
   padding-top: 64px;
-  transition: background 0.6s ease;
+  transition: opacity 0.5s ease-out, background 0.6s ease;
   overflow: hidden;
+  opacity: 1;
+}
+
+.hero.fade-out {
+  opacity: 0;
+  pointer-events: none; 
 }
 
 .hero-background-image {
@@ -275,7 +281,7 @@ section:not(.hero) {
 ========================================================== */
 #overview {
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  /* transition: opacity 0.8s ease-in-out; */
   min-height: 100vh;
   padding: 0;
   background-color: transparent;
@@ -286,6 +292,11 @@ section:not(.hero) {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#overview.is-visible {
+    opacity: 1 !important;
 }
 
 body.near-overview #overview {

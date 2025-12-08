@@ -637,7 +637,7 @@
             const y = window.scrollY;
 
             // Parallax
-            if (hero) hero.classList.toggle("scrolled", y > 20);
+            if (hero) hero.classList.toggle("scrolled", y > 30);
             if (nav) nav.classList.toggle("scrolled", y > 20);
             if (title)
               title.style.transform = `translateY(${Math.min(-y * 0.3, 0)}px)`;
@@ -661,10 +661,10 @@
                   if (currentEl.classList.contains("expanded")) {
                     threshold = 0.95;
                   }
-                  const gallery = currentEl.querySelector(".dataset-gallery");
-                  if (gallery && gallery.matches(":hover")) {
-                    threshold = 1.1; // Effectively disable glide
-                  }
+                  // const gallery = currentEl.querySelector(".dataset-gallery");
+                  // if (gallery && gallery.matches(":hover")) {
+                  //   threshold = 1.1; // Effectively disable glide
+                  // }
                   if (
                     progress > threshold &&
                     progress < 0.99 &&
