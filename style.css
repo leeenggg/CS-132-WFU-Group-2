@@ -58,6 +58,10 @@ body {
   transform: translateY(-2px);
 }
 
+.site-nav a.active {
+  text-decoration: overline;
+}
+
 /* ----------------------------------------------------------
    HERO SECTION
 ---------------------------------------------------------- */
@@ -477,9 +481,7 @@ body.near-overview #overview {
   transform: translateY(-50%) rotate(0deg);
 }
 
-/* ==========================================================
-   OVERVIEW SECTION
-========================================================== */
+
 #data {
   position: relative;
   background: #ffffff;
@@ -491,7 +493,9 @@ body.near-overview #overview {
 }
 
 #data.expanded {
-  min-height: 190vh;
+  min-height: 100vh;
+  height: auto;
+  padding-bottom: 100px;
   padding-top: 300px;
   transition: all 0.8s ease !important;
 }
@@ -585,7 +589,7 @@ body.near-overview #overview {
 
 .glass-panel h2 {
   font-size: 2rem;
-  color: #03a9f4;
+  color: #1581BF;
   margin-bottom: 1.2rem;
   text-align: center;
 }
@@ -605,16 +609,26 @@ body.near-overview #overview {
   display: inline-block;
   margin: 1.25rem auto 0;
   padding: 0.6rem 1rem;
-  background: #03a9f4;
+  background: #1581BF;
   color: #fff;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(3,169,244,0.18);
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
+  transition: all 0.3s ease;
   position: relative;
   z-index: 4;
+  font-size: 0.8rem;
+}
+
+.see-more:hover {
+  box-shadow: 0 8px 25px rgba(3, 169, 244, 0.4);
+  transform: translateY(-3px);
+  background: #1581BF;
+  border: 2px solid #1581BF;
+  background: white;
+  color: #1581BF;
 }
 
 .see-more:active {
@@ -679,6 +693,14 @@ body.near-overview #overview {
   width: 100%;
 }
 
+.expanded-row.bottom .panel.gallery-panel {
+  flex: 1;
+  width: 100%;
+  max-width: 100%; 
+  /* padding: 1.5rem 1rem;  */
+  overflow: hidden; 
+}
+
 .expanded-row.top .panel { flex: 1; min-width: 220px; }
 .expanded-row.bottom .panel { flex: 1; min-width: 280px; }
 
@@ -710,12 +732,6 @@ body.near-overview #overview {
   right: 0;
   bottom: 0;
   height: 100px;
-  background: linear-gradient(
-    180deg,
-    white 0%,
-    #03a9f4 95%,
-    #03a9f4 100%
-  );
   pointer-events: none;
   transition: opacity 0.6s ease, transform 0.6s ease;
   z-index: 4;
@@ -731,7 +747,7 @@ body.near-data #data::after {
    DATA COLLECTION SECTION
 ---------------------------------------------------------- */
 #data-collection {
-  background: linear-gradient(to top, #ffffff 0%, #03a9f4 100%);
+  /* background: #1581BF; */
   padding: 80px 0;
   color: #fff;
   min-height: 90vh;
@@ -740,8 +756,8 @@ body.near-data #data::after {
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: transform 0.8s ease;
-  transform: translateY(0);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  /* transform: translateY(0); */
 }
 
 body.near-data #data-collection {
@@ -779,6 +795,8 @@ body.near-data #data-collection {
   max-width: 1000px;
   overflow: hidden;
   height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .dataset-track {
@@ -789,12 +807,12 @@ body.near-data #data-collection {
 
 
 .dataset {
-  flex: 0 0 25%; 
+  flex: 0 0 200px; 
   text-align: center;
   text-decoration: none;
   color: black;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -803,32 +821,40 @@ body.near-data #data-collection {
 
 .dataset:hover {
   transform: scale(1.04);
+  background: #fff;
 }
 
 .dataset img {
   width: 100%;
-  height: 180px;
+  height: 120px; 
   object-fit: cover;
 }
 
 .dataset h3 {
-  font-size: 0.9rem;
-  margin: 10px;
+  font-size: 0.85rem;
+  margin: 8px;
+  line-height: 1.3;
 }
 
 .scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
-  font-size: 2rem;
   cursor: pointer;
   padding: 0.3rem 0.8rem;
   border-radius: 50%;
   transition: background 0.3s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.5rem;
 }
 
 .scroll-btn:hover {
@@ -855,8 +881,8 @@ body.near-data #data-collection {
 }
 
 .eda-browser-title {
-  font-size: 2.5rem;
-  color: #03a9f4;
+  font-size: 2rem;
+  color: #1581BF;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -901,9 +927,9 @@ body.near-data #data-collection {
 
 .eda-browser-tab.active {
   background-color: #ffffff;
-  border-bottom: 4px solid #03a9f4;
+  border-bottom: 4px solid #1581BF;
   font-weight: bold;
-  color: #03a9f4;
+  color: #1581BF;
 }
 
 .eda-browser-window {
@@ -916,7 +942,9 @@ body.near-data #data-collection {
 .eda-browser-content {
   display: none;
   animation: fadeIn 0.4s ease;
-  height: calc(100vh - 180px);
+  /* height: calc(100vh - 180px); */
+  height: auto;  
+  max-height: 80vh;
   overflow-y: auto;
 }
 
@@ -931,21 +959,23 @@ body.near-data #data-collection {
 
 .eda-graph {
   width: 100%;
-  height: 70vh;
+  height: 45vh;
   background-color: #e5e7eb;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6b7280;
-  font-size: 1rem;
-  margin: 20px 1px 30px 1px;
+  overflow: hidden; 
+  position: relative;
+  margin: 20px 1px 20px 1px;
 }
 
 .eda-graph img {
   max-width: 100%;
-  max-height: auto;
+  max-height: 100%;
+  object-fit: contain; 
   border-radius: 12px;
+  display: block;
 }
 
 /* Description */
@@ -960,11 +990,143 @@ body.near-data #data-collection {
 .eda-description h3 {
   align-items: center;
 }
-/* ----------------------------------------------------------
+
+.eda-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px; 
+}
+
+.view-analysis-btn {
+  display: inline-block;
+  margin: 1.25rem auto 0;
+  padding: 0.6rem 1rem;
+  background: #1581BF;
+  color: #fff;
+  border-radius: 8px; 
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.view-analysis-btn:hover {
+  background: white;
+  color: #1581BF;
+  border: 2px solid #1581BF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(3, 169, 244, 0.4);
+}
+
+#eda {
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+body.near-eda #eda {
+  opacity: 1;
+  /* transform: translateY(0); */
+}
+
+/* RESULTS */
+#results {
+  background: white;
+  color: #333;
+  padding: 80px 20px;
+}
+
+.results-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.results-content h2 {
+  font-size: 2rem;
+  color: #1581BF;
+  margin-bottom: 40px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  text-align: left;
+  position: relative; 
+  min-height: 500px;
+}
+
+.result-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-top: 5px solid #1581BF;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+  position: relative; 
+}
+
+.result-card:hover {
+  transform: translateY(-7px);
+  background-color: #1581BF;
+  color: white;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; 
+  transform: scale(1.02); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  overflow-y: auto; 
+}
+
+.result-card:hover h3{
+  transform: translateY(-5px);
+  background-color: #1581BF;
+  color: white;
+}
+
+.result-card:hover p{
+  transform: translateY(-5px);
+  background-color: #1581BF;
+  color: white;
+}
+
+.result-card h3 {
+  color: #1581BF;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.result-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 
+----------------------------------------------------------
    ABOUT US SECTION
 ---------------------------------------------------------- */
 #about-us {
-  background: linear-gradient(to bottom, #03a9f4, #ffffff);
+  background: linear-gradient(to bottom, #1581BF, #ffffff);
   color: #000;
   padding: 80px 0;
   text-align: center;
@@ -1024,13 +1186,13 @@ body.near-data #data-collection {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 15px;
-  border: 3px solid #03a9f4;
+  border: 3px solid #1581BF;
 }
 
 .team-member h3 {
   font-size: 1.3rem;
   margin-bottom: 5px;
-  color: #03a9f4;
+  color: #1581BF;
 }
 
 .team-member .role {
@@ -1052,3 +1214,25 @@ body.near-data #data-collection {
   line-height: 1.5;
 }
 
+
+/* QUERIES */
+
+@media (min-width: 900px) {
+  .eda-browser-content.active {
+    display: flex; 
+    gap:  20px;
+    align-items: flex-start;
+  }
+
+  .eda-graph {
+    flex: 0 0 60%; 
+    height: 50vh;  
+    margin: 0;
+  }
+
+  .eda-description {
+    flex: 1; 
+    height: 50vh; 
+    overflow-y: auto; 
+  }
+}
