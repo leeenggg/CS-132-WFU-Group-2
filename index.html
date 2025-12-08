@@ -37,19 +37,17 @@
       </div>
 
       <p class="subtitle">
-        This project aims to analyze the state of water access and quality in
-        the Philippines, focusing on differences between urban and rural
-        communities.
+        This project aims to analyze the state of access to quality water in the
+        Philippines, focusing on the various factors such as political,
+        economic, and urban/rural population.
       </p>
 
       <br />
 
       <p class="subtitle">
-        It seeks to identify the political, economic, and environmental factors
-        that affect people’s access to clean and safe water. By comparing the
-        country’s situation with strategies used in other nations, the project
-        hopes to highlight possible approaches that can improve water
-        accessibility and management in the Philippines.
+        The project hopes to find conclusive results to pinpoint which factors
+        continue to hinder and limit Filipinos from accessing quality water to
+        improve water accessibility and management in the Philippines.
       </p>
     </section>
 
@@ -64,15 +62,25 @@
             <div class="big-letter-content">
               <h1>Background</h1>
               <p class="big-first-letter">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                PrimeWater, a water provider owned by Manuel Villar, has come
+                into the limelight in April 2025, with citizens voicing their
+                complaints about enduring substandard service for years,
+                affecting upto 16 million Filipinos. These complaints were
+                centralized in the Cavite and Bulacan areas which housing a mix
+                of urban and rural communities. Some of the complaints and
+                issues experienced included constant water interruptions, and
+                continuous dirty tap water rendering it a health risk for those
+                that use these in their day to day life. Given that population
+                is on an increasing trend in the Philippines, it is a cause of
+                concern if the Philippines may provide access to clean water for
+                families around the country.
+              </p> <br>
+              <p>It is from this context that spurted the question – what is the current state of access to quality water in the Philippines, and what are the external factors affecting it? We wanted to find connections between political and economic factors, as well as the differences in urban and rural areas to see if they affect access to quality water in the country given the Philippines’ rising population. </p>
+              <p class="links">
+                <a href="https://www.abs-cbn.com/news/business/2025/5/9/primewater-issue-affects-16-million-consumers-palace-says-1756">PrimeWater issue affects 16 million consumers, Palace says | ABS-CBN News</a>
+                <br>
+                <a href="https://www.rappler.com/philippines/elections/cavite-polls-spotlight-residents-grievances-villar-primewater-2025/ ">In Cavite, elections spotlight residents' longstanding woes with Villars' PrimeWater</a>
               </p>
-              <p>2nd p</p>
             </div>
           </div>
 
@@ -170,29 +178,21 @@
             <div class="panel">
               <h3>Description</h3>
               <p>
-                Sample: We utilized datasets covering water access,
-                urbanization, GDP, and population demographics. These were
-                sourced from reputable bodies like the PSA, World Bank, and
-                WHO/UNICEF to ensure reliability.
+                We utilized datasets covering water access, population demographics for urban and rural areas, and GDP. These were sourced from reputable bodies like Philippine Statistics Authority (PSA), UNICEF, International Monetary Fund (IMF), World Health Organization (WHO), and World Bank Group.
               </p>
             </div>
 
             <div class="panel">
               <h3>Size</h3>
               <p>
-                Sample: The data covers 17 Philippine regions over multiple
-                years (ranging from 2010 to 2024), providing a comprehensive
-                temporal and spatial analysis.
+                The data covers regional data in the Philippines concerning around 18 regions, spanning over multiple years (generally ranging from 2010 to 2024)
               </p>
             </div>
 
             <div class="panel">
               <h3>Preprocessing</h3>
               <p>
-                Sample: Data was cleaned to handle missing values and
-                standardized (e.g., converting population counts to percentages)
-                to allow for accurate comparison across regions of different
-                sizes.
+                Data was cleaned to handle missing values, with names and values being generalized and standardized to one to allow proper processing and minimize error when conducting comparisons across regions of different sizes.
               </p>
             </div>
           </div>
@@ -201,11 +201,8 @@
             <div class="panel gallery-panel">
               <h3>Collection</h3>
               <p>
-                Sample: Data was gathered through desk research on government
-                websites, international organization reports, and reputable
-                academic databases. For population data, the team’s main source
-                of information is World Bank, while the supporting sources are
-                Worldometer and MacroTrends.
+                Data was gathered through desk research on government websites (PSA), international organization reports (UNICEF), and reputable academic databases (Kaggle).
+
               </p>
 
               <div class="dataset-gallery">
@@ -780,7 +777,7 @@
               isExpanded ? "false" : "true"
             );
             seeMore.textContent = isExpanded ? "See less" : "See more";
-            dataSection.classList.toggle("expanded", isExpanded); 
+            dataSection.classList.toggle("expanded", isExpanded);
 
             if (isExpanded) {
               dataContent.scrollIntoView({
@@ -806,7 +803,7 @@
 
           function autoScroll() {
             if (!isPaused) {
-              scrollPos += 1; // Speed
+              scrollPos += 0.5; 
               if (scrollPos >= galleryTrack.scrollWidth / 2) {
                 scrollPos = 0;
               }
